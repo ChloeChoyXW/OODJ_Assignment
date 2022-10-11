@@ -1,0 +1,10 @@
+UID001|Michael Lee|John@@123456|Customer|98051714035|0123456789|25, Jalan Merak, Bandar Merak, 47170, Selangor|john@gmail.com
+UID002|Michelle Smith|Micsmith@009#9|Customer|991231140968|0192345876|48,Jalan Kepong, Kepong, 52100, Kuala Lumpur|michelle08@yahoo.com
+UID003|Richard Kord|Richie@@1009456|Customer|89070914056|0123409859|25, Jalan Helang, Puchong, 47170, Selangor|rich06@gmail.com
+UID004|Jennie|Jenr@#6789|Customer|901231140788|0134568905|48,Jalan Tokong, Kepong, 52100, Kuala Lumpur|jennie8808@yahoo.com
+UID005|Ren|Renning@@123456|Customer|96051714033|0123456789|25, Jalan Merak, Bandar Merak, 47170, Selangor|ren@gmail.com
+UID006|Alice|St@ff@123451|Admin|000716140970|0143567890|48,Jalan Kepong, Kepong, 52100, Kuala Lumpur|alice01@staff.com
+UID007|Mike|St@ff@123452|Admin|98051714035|0120968989|25, Jalan Merak, Bandar Merak, 47170, Selangor|mike02@staff.com
+UID008|Jade|St@ff@123453|Admin|931221140456|0125349759|48,Jalan Kepong, Kepong, 52100, Kuala Lumpur|jade@staff.com
+UID009|Ali|St@ff@123455|Admin|91091714057|0123456789|25, Jalan Merak, Bandar Merak, 47170, Selangor|ali@staff.com
+UID010|Kevin|St@ff@123456|Admin|890405140675|0123487657|48,Jalan Kepong, Kepong, 52100, Kuala Lumpur|kevin@staff.com
