@@ -4,28 +4,76 @@
  */
 package carrentalsystem;
 
-/**
- *
- * @author trish
- */
 public class User {
     
-    protected String UserID;
-    public String Name;
-    protected String Password;
-    protected String Usertype;
-}
+    private String uid;
+    private String name;
+    private String pw;
+    private String email;
 
-    public User(String UserID, String Name, String Password, String Usertype) {
-    this.UserID = UserID;
-    this.Name = Name;
-    this.Password = Password;
-    this.Usertype = Usertype;
+    public User() {
+        uid = null;
+        name = null;
+        pw = null;
+        email = null;
+    }
+
+    public User(String uid, String name, String pw, String email) {
+        this.uid = uid;
+        this.name = name;
+        this.pw = pw;
+        this.email = email;
+    }
+
+    public User(String uid) {
+        this.uid = uid;
+    }
     
+    
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPw() {
+        return pw;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    
+    public static void adminLogin(){
+        
+    }
+
+    @Override
+    public String toString() {
+        return uid + "|" + name + "|" + pw + "|" + email;
     
   }
+}
 
-UserID = new UserID();
-Name = new Name();
-
-    System.out.println(UserID);
+    
+    
+    
+    

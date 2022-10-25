@@ -4,6 +4,7 @@
  */
 package carrentalsystem;
 
+
 /**
  *
  * @author USER
@@ -36,6 +37,11 @@ public class Cars {
         this.pricePerHour = pricePerHour;
         this.status = status;
     }
+
+    public Cars(String carID) {
+        this.carID = carID;
+    }
+    
 
     public void setCarID(String carID) {
         this.carID = carID;
@@ -91,6 +97,10 @@ public class Cars {
 
     public String getStatus() {
         return status;
+    }
+    
+    public static void o(){
+        System.out.println("a");
     }
 
     @Override

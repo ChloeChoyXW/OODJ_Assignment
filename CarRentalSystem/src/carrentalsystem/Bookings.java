@@ -12,8 +12,8 @@ import java.time.*;
 
 public class Bookings {
     private String bookingID;
-    private String userID;
-    private String carID;
+    private Member member;
+    private Cars car;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private String bookingStatus;
@@ -22,8 +22,8 @@ public class Bookings {
 
     public Bookings() {
         bookingID = null;
-        userID = null;
-        carID = null;
+        member = null;
+        car = null;
         startDate = null;
         endDate = null;
         bookingStatus = null;
@@ -31,27 +31,27 @@ public class Bookings {
         paymentStatus = null;
     }
 
-    public Bookings(String bookingID, String userID, String carID, LocalDateTime startDate, LocalDateTime endDate, String bookingStatus, double paymentAmount, String status) {
+    public Bookings(String bookingID, Member member, Cars car, LocalDateTime startDate, LocalDateTime endDate, String bookingStatus, double paymentAmount, String paymentStatus) {
         this.bookingID = bookingID;
-        this.userID = userID;
-        this.carID = carID;
+        this.member = member;
+        this.car = car;
         this.startDate = startDate;
         this.endDate = endDate;
         this.bookingStatus = bookingStatus;
         this.paymentAmount = paymentAmount;
-        this.paymentStatus = status;
+        this.paymentStatus = paymentStatus;
     }
 
     public void setBookingID(String bookingID) {
         this.bookingID = bookingID;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setMember(Member member) {
+        this.member = member;
     }
 
-    public void setCarID(String carID) {
-        this.carID = carID;
+    public void setCar(Cars car) {
+        this.car = car;
     }
 
     public void setStartDate(LocalDateTime startDate) {
@@ -78,12 +78,12 @@ public class Bookings {
         return bookingID;
     }
 
-    public String getUserID() {
-        return userID;
+    public Member getMember() {
+        return member;
     }
 
-    public String getCarID() {
-        return carID;
+    public Cars getCar() {
+        return car;
     }
 
     public LocalDateTime getStartDate() {
@@ -108,8 +108,9 @@ public class Bookings {
 
     @Override
     public String toString() {
-        return bookingID + "|" + userID + "|" + carID + "|" + startDate + "|"+ endDate + "|" + bookingStatus + "|" + paymentAmount + "|" + paymentStatus;
+        return bookingID + "|" + member + "|" + car.getCarID() + "|" + startDate + "|"+ endDate + "|" + bookingStatus + "|" + paymentAmount + "|" + paymentStatus;
     }
+//    getuserID
     
     
     
