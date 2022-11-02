@@ -9,7 +9,7 @@ package carrentalsystem;
  *
  * @author USER
  */
-public class Cars {
+public class Car {
     private String carID;
     private String brand;
     private String carType;
@@ -18,7 +18,7 @@ public class Cars {
     private double pricePerHour;
     private String status;
 
-    public Cars() {
+    public Car() {
         carID = null;
         brand = null;
         carType = null;
@@ -28,7 +28,7 @@ public class Cars {
         status = null;
     }
 
-    public Cars(String carID, String brand, String carType, int seatNum, String carPlate, double pricePerHour, String status) {
+    public Car(String carID, String brand, String carType, int seatNum, String carPlate, double pricePerHour, String status) {
         this.carID = carID;
         this.brand = brand;
         this.carType = carType;
@@ -38,7 +38,7 @@ public class Cars {
         this.status = status;
     }
 
-    public Cars(String carID) {
+    public Car(String carID) {
         this.carID = carID;
     }
     

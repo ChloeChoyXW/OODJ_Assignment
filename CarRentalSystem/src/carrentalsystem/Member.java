@@ -9,8 +9,8 @@ package carrentalsystem;
  * @author USER
  */
 public class Member extends User{
-    private int icNo;
-    private int phoneNo;
+    private long icNo;
+    private long phoneNo;
     private String address;
 
     public Member() {
@@ -19,7 +19,7 @@ public class Member extends User{
         address = null;
     }
 
-    public Member(String uid, String name, String pw, String email, int icNo, int phoneNo, String address) {
+    public Member(String uid, String name, String pw, String email, long icNo, long phoneNo, String address) {
         super(uid, name, pw, email);
         this.icNo = icNo;
         this.phoneNo = phoneNo;
@@ -32,11 +32,11 @@ public class Member extends User{
     
     
 
-    public void setIcNo(int icNo) {
+    public void setIcNo(long icNo) {
         this.icNo = icNo;
     }
 
-    public void setPhoneNo(int phoneNo) {
+    public void setPhoneNo(long phoneNo) {
         this.phoneNo = phoneNo;
     }
 
@@ -44,11 +44,11 @@ public class Member extends User{
         this.address = address;
     }
 
-    public int getIcNo() {
+    public long getIcNo() {
         return icNo;
     }
 
-    public int getPhoneNo() {
+    public long getPhoneNo() {
         return phoneNo;
     }
 
@@ -58,7 +58,7 @@ public class Member extends User{
 
     @Override
     public String toString() {
-        return this.getUid() + "|" + this.getName() + "|" + this.getPw() + "|" + this.getEmail() + icNo + "|" + phoneNo + "|" + address;
+        return this.getUid() + "|" + this.getName() + "|" + this.getPw() + "|" + this.getEmail() + "|" + icNo + "|" + phoneNo + "|" + address;
     } 
   
 }

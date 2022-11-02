@@ -13,7 +13,7 @@ import java.time.*;
 public class Bookings {
     private String bookingID;
     private Member member;
-    private Cars car;
+    private Car car;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private String bookingStatus;
@@ -31,7 +31,7 @@ public class Bookings {
         paymentStatus = null;
     }
 
-    public Bookings(String bookingID, Member member, Cars car, LocalDateTime startDate, LocalDateTime endDate, String bookingStatus, double paymentAmount, String paymentStatus) {
+    public Bookings(String bookingID, Member member, Car car, LocalDateTime startDate, LocalDateTime endDate, String bookingStatus, double paymentAmount, String paymentStatus) {
         this.bookingID = bookingID;
         this.member = member;
         this.car = car;
@@ -50,7 +50,7 @@ public class Bookings {
         this.member = member;
     }
 
-    public void setCar(Cars car) {
+    public void setCar(Car car) {
         this.car = car;
     }
 
@@ -82,7 +82,7 @@ public class Bookings {
         return member;
     }
 
-    public Cars getCar() {
+    public Car getCar() {
         return car;
     }
 

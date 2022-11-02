@@ -10,20 +10,20 @@ import java.time.YearMonth;
  *
  * @author USER
  */
-public class memberPayment {
+public class MemberPayment {
     private String uid;    
-    private int cardNo;
+    private long cardNo;
     private int cvv;
     private YearMonth expiryDate;
 
-    public memberPayment() {
+    public MemberPayment() {
         uid = null;
         cardNo = 0;
         cvv = 0;
         expiryDate = null;
     }
 
-    public memberPayment(String uid, int cardNo, int cvv, YearMonth expiryDate) {
+    public MemberPayment(String uid, long cardNo, int cvv, YearMonth expiryDate) {
         this.uid = uid;
         this.cardNo = cardNo;
         this.cvv = cvv;
@@ -50,7 +50,7 @@ public class memberPayment {
         return uid;
     }
 
-    public int getCardNo() {
+    public long getCardNo() {
         return cardNo;
     }
 

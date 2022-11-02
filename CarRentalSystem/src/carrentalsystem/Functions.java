@@ -27,22 +27,79 @@ import javax.swing.JLabel;
  */
 public class Functions {
     //read txt file
-    public static void readAdminDetails(ArrayList adminList) {
+    public static ArrayList readTextFile(String readData){
         String row;
         String[] data;
+        
+        try{
+            switch(readData){
+                case "admin":
+                    ArrayList<User> adminList = new ArrayList<>();
+                    File adminFile = new File("admin.txt");
+                    Scanner adminInfo = new Scanner(adminFile);
 
-        try {
-            File adminFile = new File("admin.txt");
-            Scanner adminInfo = new Scanner(adminFile);
+                    while (adminInfo.hasNextLine()) {
+                        row = adminInfo.nextLine();
+                        data = row.split("[|]");
+                        adminList.add(new User(data[0], data[1], data[2], data[3]));
+                    }
+                    adminInfo.close();
+                    return adminList;
+                    
+                case "member":
+                    ArrayList<Member> memberList = new ArrayList<>();
+                    File memberFile = new File("member.txt");
+                    Scanner memberInfo = new Scanner(memberFile);
 
-            while (adminInfo.hasNextLine()) {
-                row = adminInfo.nextLine();
-                data = row.split("[|]");
-                adminList.add(new User(data[0], data[1], data[2], data[3]));
+                    while (memberInfo.hasNextLine()) {
+                        row = memberInfo.nextLine();
+                        data = row.split("[|]");
+                        memberList.add(new Member(data[0], data[1], data[2], data[3], Long.parseLong(data[4]),Long.parseLong(data[5]), data[6]));
+                    }
+                    return memberList;
+                    
+                case "payment":
+                    ArrayList<MemberPayment> paymentList = new ArrayList<>();
+                    File paymentFile = new File("member_payment.txt");
+                    Scanner paymentInfo = new Scanner(paymentFile);
+
+                    while (paymentInfo.hasNextLine()) {
+                        row = paymentInfo.nextLine();
+                        data = row.split("[|]");
+                        paymentList.add(new MemberPayment(data[0], Long.parseLong(data[1]), Integer.parseInt(data[2]), stringToDate(data[3])));
+                    }
+                    paymentInfo.close();
+                    return paymentList;
+                    
+                case "car":
+                    ArrayList<Car> carList = new ArrayList<>();
+                    File carFile = new File("car.txt");
+                    Scanner carInfo = new Scanner(carFile);
+
+                    while (carInfo.hasNextLine()) {
+                        row = carInfo.nextLine();
+                        data = row.split("[|]");
+                        carList.add(new Car(data[0], data[1], data[2],Integer.parseInt(data[3]), data[4],Double.parseDouble(data[5]), data[6]));
+                    }
+                    carInfo.close();
+                    return carList;
+                    
+                case "booking":
+                    ArrayList<Bookings> bookList = new ArrayList<>();
+                    File bookingFile = new File("bookings.txt");
+                    Scanner bookingInfo = new Scanner(bookingFile);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+
+                    while (bookingInfo.hasNextLine()) {
+                        row = bookingInfo.nextLine();
+                        data = row.split("[|]");
+                        bookList.add(new Bookings(data[0], new Member(data[1]), new Car(data[2]), LocalDateTime.parse(data[3], formatter), LocalDateTime.parse(data[4], formatter), data[5], Double.parseDouble(data[6]), data[7]));
+                    }
+                    bookingInfo.close();
+                    return bookList;
             }
-            adminInfo.close();
 
-        } catch (FileNotFoundException e) {
+        }catch (FileNotFoundException e) {
             System.out.println("Try again.");
 //            JFrame f = new JFrame();
 //            JDialog d = new JDialog(f, "Error", true);
@@ -57,91 +114,9 @@ public class Functions {
 //            d.setLocationRelativeTo(null);
 //            d.setVisible(true);
         }
+        return null;
     }
- 
-    public static void readMemberDetails(ArrayList memberList) {
-        String row;
-        String[] data;
 
-        try {
-            File adminFile = new File("member.txt");
-            Scanner memberInfo = new Scanner(adminFile);
-
-            while (memberInfo.hasNextLine()) {
-                row = memberInfo.nextLine();
-                data = row.split("[|]");
-                memberList.add(new Member(data[0], data[1], data[2], data[3], Integer.parseInt(data[4]),Integer.parseInt(data[5]), data[6]));
-            }
-            memberInfo.close();
-
-        } catch (FileNotFoundException e) {
-            System.out.println("Try again.");
-        }
-    }
-    
-        public static void readCarDetails(ArrayList carList) {
-        String row;
-        String[] data;
-
-        try {
-            File adminFile = new File("car.txt");
-            Scanner carInfo = new Scanner(adminFile);
-
-            while (carInfo.hasNextLine()) {
-                row = carInfo.nextLine();
-                data = row.split("[|]");
-                carList.add(new Cars(data[0], data[1], data[2],Integer.parseInt(data[3]), data[4],Double.parseDouble(data[5]), data[6]));
-            }
-            carInfo.close();
-
-        } catch (FileNotFoundException e) {
-            System.out.println("Try again.");
-        }
-    }
-        
-//    read member payment txt file
-    public static void readPaymentDetails(ArrayList paymentList) {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/yy");
-        String row;
-        String[] data;
-
-        try {
-            File paymentFile = new File("member_payment.txt");
-            Scanner paymentInfo = new Scanner(paymentFile);
-
-            while (paymentInfo.hasNextLine()) {
-                row = paymentInfo.nextLine();
-                data = row.split("[|]");
-                paymentList.add(new memberPayment(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), stringToDate(data[3])));
-            }
-            paymentInfo.close();
-
-        } catch (FileNotFoundException e) {
-            System.out.println("Try again.");
-        }
-    }
-    
-        public static void readBookingsDetails(ArrayList bookingList) {
-        String row;
-        String[] data;
-
-        try {
-            File bookingFile = new File("bookings.txt");
-            Scanner bookingInfo = new Scanner(bookingFile);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-
-            while (bookingInfo.hasNextLine()) {
-                row = bookingInfo.nextLine();
-                data = row.split("[|]");
-                Cars a = new Cars("a");
-                bookingList.add(new Bookings(data[0], new Member(data[1]), new Cars(data[2]), LocalDateTime.parse(data[3], formatter), LocalDateTime.parse(data[4], formatter), data[5], Double.parseDouble(data[6]), data[7]));
-            }
-            bookingInfo.close();
-
-        } catch (FileNotFoundException e) {
-            System.out.println("Try again.");
-        }
-    }
         
 //      write updated details to file
     public static void updateBookingDetails(ArrayList<Bookings> templist) throws IOException {
@@ -174,10 +149,10 @@ public class Functions {
         }
     }
     
-    public static void updatePaymentDetails(ArrayList<memberPayment> templist) throws IOException {
+    public static void updatePaymentDetails(ArrayList<MemberPayment> templist) throws IOException {
         try {
             PrintWriter paymentDetails = new PrintWriter(new FileWriter("member_payment.txt", false));
-            for(memberPayment p : templist){
+            for(MemberPayment p : templist){
                 paymentDetails.write(p.toString());
             }
             updateDetailsMessage("Payment details updated!");
@@ -189,10 +164,10 @@ public class Functions {
         }
     }
     
-    public static void updateCarDetails(ArrayList<Cars> templist) throws IOException {
+    public static void updateCarDetails(ArrayList<Car> templist) throws IOException {
         try {
             PrintWriter carDetails = new PrintWriter(new FileWriter("car.txt", false));
-            for(Cars c : templist){
+            for(Car c : templist){
                 carDetails.write(c.toString());
             }
             updateDetailsMessage("Car details updated!");
@@ -250,10 +225,10 @@ public class Functions {
         }
     }
     
-    public static void addPaymentDetails(ArrayList<memberPayment> templist) throws IOException {
+    public static void addPaymentDetails(ArrayList<MemberPayment> templist) throws IOException {
         try {
             PrintWriter paymentDetails = new PrintWriter(new FileWriter("member_payment.txt", true));
-            for(memberPayment p : templist){
+            for(MemberPayment p : templist){
                 paymentDetails.write(p.toString());
             }
             updateDetailsMessage("Payment details updated!");
@@ -265,10 +240,10 @@ public class Functions {
         }
     }
     
-    public static void addCars(ArrayList<Cars> templist) throws IOException {
+    public static void addCars(ArrayList<Car> templist) throws IOException {
         try {
             PrintWriter carDetails = new PrintWriter(new FileWriter("car.txt", true));
-            for(Cars c : templist){
+            for(Car c : templist){
                 carDetails.write(c.toString());
             }
             updateDetailsMessage("Car added!");
