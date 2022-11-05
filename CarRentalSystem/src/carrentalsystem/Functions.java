@@ -40,8 +40,10 @@ public class Functions {
 
                     while (adminInfo.hasNextLine()) {
                         row = adminInfo.nextLine();
-                        data = row.split("[|]");
-                        adminList.add(new User(data[0], data[1], data[2], data[3]));
+                        if(!row.equals("")){
+                            data = row.split("[|]");
+                            adminList.add(new User(data[0], data[1], data[2], data[3]));
+                        }
                     }
                     adminInfo.close();
                     return adminList;
@@ -53,8 +55,10 @@ public class Functions {
 
                     while (memberInfo.hasNextLine()) {
                         row = memberInfo.nextLine();
-                        data = row.split("[|]");
-                        memberList.add(new Member(data[0], data[1], data[2], data[3], Long.parseLong(data[4]),Long.parseLong(data[5]), data[6]));
+                        if(!row.equals("")){
+                            data = row.split("[|]");
+                            memberList.add(new Member(data[0], data[1], data[2], data[3], Long.parseLong(data[4]),Long.parseLong(data[5]), data[6]));
+                        }
                     }
                     return memberList;
                     
@@ -65,8 +69,10 @@ public class Functions {
 
                     while (paymentInfo.hasNextLine()) {
                         row = paymentInfo.nextLine();
-                        data = row.split("[|]");
-                        paymentList.add(new MemberPayment(data[0], Long.parseLong(data[1]), Integer.parseInt(data[2]), stringToDate(data[3])));
+                        if(!row.equals("")){
+                            data = row.split("[|]");
+                            paymentList.add(new MemberPayment(data[0], Long.parseLong(data[1]), Integer.parseInt(data[2]), stringToDate(data[3])));
+                        }
                     }
                     paymentInfo.close();
                     return paymentList;
@@ -78,8 +84,10 @@ public class Functions {
 
                     while (carInfo.hasNextLine()) {
                         row = carInfo.nextLine();
-                        data = row.split("[|]");
-                        carList.add(new Car(data[0], data[1], data[2],Integer.parseInt(data[3]), data[4],Double.parseDouble(data[5]), data[6]));
+                        if(!row.equals("")){
+                            data = row.split("[|]");
+                            carList.add(new Car(data[0], data[1], data[2],Integer.parseInt(data[3]), data[4],Double.parseDouble(data[5]), data[6]));
+                        }
                     }
                     carInfo.close();
                     return carList;
@@ -92,27 +100,17 @@ public class Functions {
 
                     while (bookingInfo.hasNextLine()) {
                         row = bookingInfo.nextLine();
-                        data = row.split("[|]");
-                        bookList.add(new Bookings(data[0], new Member(data[1]), new Car(data[2]), LocalDateTime.parse(data[3], formatter), LocalDateTime.parse(data[4], formatter), data[5], Double.parseDouble(data[6]), data[7]));
+                        if(!row.equals("")){
+                            data = row.split("[|]");
+                            bookList.add(new Bookings(data[0], new Member(data[1]), new Car(data[2]), LocalDateTime.parse(data[3], formatter), LocalDateTime.parse(data[4], formatter), data[5], Double.parseDouble(data[6]), data[7]));
+                        }
                     }
                     bookingInfo.close();
                     return bookList;
             }
 
         }catch (FileNotFoundException e) {
-            System.out.println("Try again.");
-//            JFrame f = new JFrame();
-//            JDialog d = new JDialog(f, "Error", true);
-//            JLabel l = new JLabel();
-//            l.setFont(new Font("Sitka Text", Font.PLAIN, 12));
-//            l.setText("Text file not found");
-//            l.setHorizontalAlignment(JLabel.CENTER);
-//            l.setVerticalAlignment(JLabel.CENTER);
-//            d.add(l);
-//            d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//            d.setSize(200, 100);
-//            d.setLocationRelativeTo(null);
-//            d.setVisible(true);
+            messageBox("Text file not found!");
         }
         return null;
     }
@@ -123,10 +121,10 @@ public class Functions {
         try {
             PrintWriter bookingDetails = new PrintWriter(new FileWriter("bookings.txt", false));
             for(Bookings b : templist){
-                bookingDetails.write(b.toString());
-            }
-            updateDetailsMessage("Booking details updated!");
+                bookingDetails.write(b.toString() + System.lineSeparator());
+            }            
             bookingDetails.close();         
+            messageBox("Booking details updated!");
         }
         catch (IOException e){
 //            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
@@ -138,10 +136,10 @@ public class Functions {
         try {
             PrintWriter memberDetails = new PrintWriter(new FileWriter("member.txt", false));
             for(Member m : templist){
-                memberDetails.write(m.toString());
+                memberDetails.write(m.toString() + System.lineSeparator());
             }
-            updateDetailsMessage("Member details updated!");
-            memberDetails.close();         
+            memberDetails.close(); 
+            messageBox("Member details updated!");        
         }
         catch (IOException e){
 //            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
@@ -153,10 +151,10 @@ public class Functions {
         try {
             PrintWriter paymentDetails = new PrintWriter(new FileWriter("member_payment.txt", false));
             for(MemberPayment p : templist){
-                paymentDetails.write(p.toString());
-            }
-            updateDetailsMessage("Payment details updated!");
+                paymentDetails.write(p.toString() + System.lineSeparator());
+            }            
             paymentDetails.close();         
+            messageBox("Payment details updated!");
         }
         catch (IOException e){
 //            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
@@ -168,10 +166,10 @@ public class Functions {
         try {
             PrintWriter carDetails = new PrintWriter(new FileWriter("car.txt", false));
             for(Car c : templist){
-                carDetails.write(c.toString());
+                carDetails.write(c.toString() + System.lineSeparator());
             }
-            updateDetailsMessage("Car details updated!");
-            carDetails.close();         
+            carDetails.close();  
+            messageBox("Car details updated!");
         }
         catch (IOException e){
 //            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
@@ -183,10 +181,10 @@ public class Functions {
         try {
             PrintWriter adminDetails = new PrintWriter(new FileWriter("admin.txt", false));
             for(User a : templist){
-                adminDetails.write(a.toString());
+                adminDetails.write(a.toString() + System.lineSeparator());
             }
-            updateDetailsMessage("Admin details updated!");
-            adminDetails.close();         
+            adminDetails.close(); 
+            messageBox("Admin details updated!");
         }
         catch (IOException e){
 //            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
@@ -195,14 +193,12 @@ public class Functions {
     }
     
 //    Add details to textfile
-    public static void addBookings(ArrayList<Bookings> templist) throws IOException {
+    public static void addBookings(Bookings details) throws IOException {
         try {
             PrintWriter bookingDetails = new PrintWriter(new FileWriter("bookings.txt", true));
-            for(Bookings b : templist){
-                bookingDetails.write(b.toString());
-            }
-            updateDetailsMessage("Booking added!");
+            bookingDetails.write(details.toString() + System.lineSeparator());
             bookingDetails.close();         
+            messageBox("Booking added!");
         }
         catch (IOException e){
 //            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
@@ -210,14 +206,12 @@ public class Functions {
         }
     }
     
-    public static void registerMember(ArrayList<Member> templist) throws IOException {
+    public static void registerMember(Member details) throws IOException {
         try {
             PrintWriter memberDetails = new PrintWriter(new FileWriter("member.txt", true));
-            for(Member m : templist){
-                memberDetails.write(m.toString());
-            }
-            updateDetailsMessage("Registration successful!");
+            memberDetails.write(details.toString() + System.lineSeparator());           
             memberDetails.close();         
+            messageBox("Registration successful!");
         }
         catch (IOException e){
 //            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
@@ -225,14 +219,12 @@ public class Functions {
         }
     }
     
-    public static void addPaymentDetails(ArrayList<MemberPayment> templist) throws IOException {
+    public static void addPaymentDetails(MemberPayment details) throws IOException {
         try {
             PrintWriter paymentDetails = new PrintWriter(new FileWriter("member_payment.txt", true));
-            for(MemberPayment p : templist){
-                paymentDetails.write(p.toString());
-            }
-            updateDetailsMessage("Payment details updated!");
-            paymentDetails.close();         
+            paymentDetails.write(details.toString() + System.lineSeparator());            
+            paymentDetails.close(); 
+            messageBox("Payment details updated!");
         }
         catch (IOException e){
 //            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
@@ -240,14 +232,12 @@ public class Functions {
         }
     }
     
-    public static void addCars(ArrayList<Car> templist) throws IOException {
+    public static void addCars(Car details) throws IOException {
         try {
             PrintWriter carDetails = new PrintWriter(new FileWriter("car.txt", true));
-            for(Car c : templist){
-                carDetails.write(c.toString());
-            }
-            updateDetailsMessage("Car added!");
-            carDetails.close();         
+            carDetails.write(details.toString() + System.lineSeparator());           
+            carDetails.close(); 
+            messageBox("Car added!");
         }
         catch (IOException e){
 //            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
@@ -255,14 +245,12 @@ public class Functions {
         }
     }
     
-    public static void addAdmin(ArrayList<User> templist) throws IOException {
+    public static void addAdmin(User details) throws IOException {
         try {
             PrintWriter adminDetails = new PrintWriter(new FileWriter("admin.txt", true));
-            for(User a : templist){
-                adminDetails.write(a.toString());
-            }
-            updateDetailsMessage("Admin added!");
+            adminDetails.write(details.toString() + System.lineSeparator());
             adminDetails.close();         
+            messageBox("Admin added!");
         }
         catch (IOException e){
 //            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
@@ -272,7 +260,7 @@ public class Functions {
     
 
 //    message appear after updated textfile
-    public static void updateDetailsMessage(String message){
+    public static void messageBox(String message){
         JFrame f = new JFrame();
         JDialog d = new JDialog(f, "Message", true);
         JLabel l = new JLabel();

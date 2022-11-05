@@ -9,6 +9,7 @@ package carrentalsystem;
  * @author USER
  */
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Bookings {
     private String bookingID;
@@ -19,6 +20,7 @@ public class Bookings {
     private String bookingStatus;
     private double paymentAmount;
     private String paymentStatus;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 
     public Bookings() {
         bookingID = null;
@@ -70,8 +72,8 @@ public class Bookings {
         this.paymentAmount = paymentAmount;
     }
 
-    public void setStatus(String status) {
-        this.paymentStatus = status;
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
     public String getBookingID() {
@@ -102,13 +104,13 @@ public class Bookings {
         return paymentAmount;
     }
 
-    public String getStatus() {
+    public String getPaymentStatus() {
         return paymentStatus;
     }
 
     @Override
     public String toString() {
-        return bookingID + "|" + member + "|" + car.getCarID() + "|" + startDate + "|"+ endDate + "|" + bookingStatus + "|" + paymentAmount + "|" + paymentStatus;
+        return bookingID + "|" + member.getUid() + "|" + car.getCarID() + "|" + startDate.format(formatter) + "|"+ endDate.format(formatter) + "|" + bookingStatus + "|" + paymentAmount + "|" + paymentStatus;
     }
 //    getuserID
     
