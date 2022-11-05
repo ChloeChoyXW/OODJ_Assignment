@@ -29,7 +29,7 @@ public class CustomerBooking extends User {          //linked to User class, Car
     public CustomerBooking() {
     }
     
-    public CustomerBooking(int ID, User user, Car car, short RentingDate, short RentingTime, short ReturnDate, short ReturnTime, int Bill) {
+    public CustomerBooking(int ID, User user, Car car, short RentingDate, short RentingTime, short ReturnDate, short ReturnTime, int UserPayment) {
         this.ID = ID;
         this.user = user;
         this.car = car;
@@ -158,7 +158,7 @@ public class CustomerBooking extends User {          //linked to User class, Car
         // code for writing new Booking record 
         ObjectOutputStream outputStream = null;
         try {
-            outputStream = new ObjectOutputStream(new FileOutputStream("Bookings.ser"));
+            outputStream = new ObjectOutputStream(new FileOutputStream("Bookings.txt"));
             for (int i = 0; i < customerBooking.size() - 1; i++) {
                 outputStream.writeObject(customerBooking.get(i));
             }
