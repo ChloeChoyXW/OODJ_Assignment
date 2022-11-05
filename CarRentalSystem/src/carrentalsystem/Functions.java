@@ -63,7 +63,7 @@ public class Functions {
                     return memberList;
                     
                 case "payment":
-                    ArrayList<MemberPayment> paymentList = new ArrayList<>();
+                    ArrayList<memberPayment> paymentList = new ArrayList<>();
                     File paymentFile = new File("member_payment.txt");
                     Scanner paymentInfo = new Scanner(paymentFile);
 
@@ -71,7 +71,7 @@ public class Functions {
                         row = paymentInfo.nextLine();
                         if(!row.equals("")){
                             data = row.split("[|]");
-                            paymentList.add(new MemberPayment(data[0], Long.parseLong(data[1]), Integer.parseInt(data[2]), stringToDate(data[3])));
+                            paymentList.add(new memberPayment(data[0], Long.parseLong(data[1]), Integer.parseInt(data[2]), stringToDate(data[3])));
                         }
                     }
                     paymentInfo.close();
@@ -147,10 +147,10 @@ public class Functions {
         }
     }
     
-    public static void updatePaymentDetails(ArrayList<MemberPayment> templist) throws IOException {
+    public static void updatePaymentDetails(ArrayList<memberPayment> templist) throws IOException {
         try {
             PrintWriter paymentDetails = new PrintWriter(new FileWriter("member_payment.txt", false));
-            for(MemberPayment p : templist){
+            for(memberPayment p : templist){
                 paymentDetails.write(p.toString() + System.lineSeparator());
             }            
             paymentDetails.close();         
@@ -219,7 +219,7 @@ public class Functions {
         }
     }
     
-    public static void addPaymentDetails(MemberPayment details) throws IOException {
+    public static void addPaymentDetails(memberPayment details) throws IOException {
         try {
             PrintWriter paymentDetails = new PrintWriter(new FileWriter("member_payment.txt", true));
             paymentDetails.write(details.toString() + System.lineSeparator());            
