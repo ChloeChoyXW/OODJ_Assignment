@@ -4,8 +4,8 @@
  */
 package carrentalsystem;
 
-
-import static carrentalsystem.customerCarSearch.showCarInfo;
+import static carrentalsystem.updatingBookings.addBookings;
+import static carrentalsystem.updatingBookings.removingBookings.RemovingBookings;
 import java.io.IOException;
 import static java.lang.System.exit;
 
@@ -17,11 +17,12 @@ public class CarRentalSystem {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
 //        confirmBooking();
-        showCarInfo();
+        RemovingBookings();
         exit(0);
     }
     
