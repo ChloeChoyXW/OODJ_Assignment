@@ -89,18 +89,19 @@ public class HandleCarInfo {
     public static void editCarInfo() throws IOException{
         ArrayList<Car> carList = readTextFile("car");
         ArrayList<Car> updatedList = new ArrayList<>();
+        
+        //enter car id for editing
         Scanner carID = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Enter car ID:");
-        String ID = "C" + carID.nextLine();
+        String ID = carID.nextLine();
         
+        //show selected car details
         for(Car b : carList){
             if(ID.equals(b.getCarID())){
-                
                 System.out.println(b.toString());
             }
         }
-        
-        
+
         Scanner carPrice = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Enter car price:");
         int price = Integer.parseInt(carPrice.nextLine());
@@ -111,7 +112,7 @@ public class HandleCarInfo {
         
         Scanner carAvailability = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Enter car availability:");
-        String availability = "C" + carAvailability.nextLine();
+        String availability = carAvailability.nextLine();
         
         for(Car c : carList){
             if(ID.equals(c.getCarID())){
@@ -122,7 +123,34 @@ public class HandleCarInfo {
             }
         }
         
-        updateCarDetails(updatedList);
+        updateCarDetails(updatedList); 
+    } 
+    
+    public static void carAvailability(Boolean availability) throws IOException{
+        ArrayList<Car> carList = readTextFile("car");
+        ArrayList<Car> updatedList = new ArrayList<>();
         
-    }   
+        //enter car id for editing
+        Scanner carID = new Scanner(System.in);
+        System.out.println("Enter car ID:");
+        String ID = carID.nextLine();
+        
+        
+        for(Car c : carList){
+            if(ID.equals(c.getCarID())){
+                if(availability.equals(true)){
+                    c.setStatus("Available");
+                }
+                else{
+                    c.setStatus("Unavailable");
+                }
+                updatedList.add(c);
+            }
+            else{
+                updatedList.add(c);
+            }
+        }
+        
+        updateCarDetails(updatedList); 
+    } 
 }

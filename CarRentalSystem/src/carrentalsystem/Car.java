@@ -99,10 +99,6 @@ public class Car {
         return status;
     }
     
-    public static void o(){
-        System.out.println("a");
-    }
-
     @Override
     public String toString() {
         return carID + "|" + brand + "|" + carType + "|" + seatNum + "|" + carPlate + "|" + pricePerHour + "|" + status;
