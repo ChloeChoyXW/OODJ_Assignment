@@ -19,12 +19,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author USER
  */
-public class viewBookingDetails extends javax.swing.JFrame {
+public class AdminViewBookingDetails extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public viewBookingDetails() {
+    public AdminViewBookingDetails() {
         initComponents();
     }
 
@@ -415,7 +415,7 @@ public class viewBookingDetails extends javax.swing.JFrame {
 
         } catch (IllegalArgumentException e) {
             messageBox("Details not found! Please try again!");
-            Logger.getLogger(viewCarDetails.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(AdminViewCarDetails.class.getName()).log(Level.SEVERE, null, e);
             
         }
         return null;
@@ -460,7 +460,7 @@ public class viewBookingDetails extends javax.swing.JFrame {
             
         } catch (Exception e) {
             messageBox("Details not found! Please try again!");
-            Logger.getLogger(viewCarDetails.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(AdminViewCarDetails.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -481,14 +481,30 @@ public class viewBookingDetails extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(viewBookingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminViewBookingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(viewBookingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminViewBookingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(viewBookingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminViewBookingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(viewBookingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminViewBookingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -510,7 +526,7 @@ public class viewBookingDetails extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new viewBookingDetails().setVisible(true);
+                new AdminViewBookingDetails().setVisible(true);
                 
             }
             

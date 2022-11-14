@@ -4,6 +4,7 @@
  */
 package carrentalsystem;
 
+import static carrentalsystem.Functions.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,7 +18,7 @@ public class customerCarSearch {
 
 
     public static void showCarInfo(){
-        ArrayList <Car> carList = readTextFile ( "car" );
+        ArrayList <Car> carList = readTextFile("car");
         System.out.println(carList);
        
 
