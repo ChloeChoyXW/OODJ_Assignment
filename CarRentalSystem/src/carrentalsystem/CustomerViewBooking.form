@@ -7,9 +7,6 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[2147483647, 1400]"/>
-    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[811, 629]"/>
     </Property>
@@ -38,57 +35,44 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace min="46" pref="46" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="carDetailsPanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="159" max="32767" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="46" pref="46" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="398" max="-2" attributes="0"/>
-                                      <Component id="confirmBookingButton" min="-2" pref="75" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="declineBookingButton" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="customerDetailsPanel" alignment="0" pref="560" max="32767" attributes="0"/>
-                                  <Component id="bookingDetailsPanel" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="carDetailsPanel" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="deleteBookingButton" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
                           <Component id="carInfoLabel" min="-2" pref="154" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="selectedSearch" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="searchInput" min="-2" pref="152" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="searchButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="bookingDetailsPanel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cancelBookingButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="makePaymentButton" min="-2" pref="112" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="1015" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="selectedSearch" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="searchInput" min="-2" pref="152" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="searchButton" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jScrollPane1" alignment="0" min="-2" pref="1015" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="jSeparator1" min="-2" pref="1053" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Component id="jSeparator1" min="-2" pref="1053" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -108,29 +92,21 @@
               <Component id="jScrollPane1" min="-2" pref="218" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="deleteBookingButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="declineBookingButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="confirmBookingButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="carDetailsPanel" max="32767" attributes="0"/>
-                          <Component id="bookingDetailsPanel" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="customerDetailsPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="bookingDetailsPanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="carDetailsPanel" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Component id="cancelBookingButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="makePaymentButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -141,16 +117,15 @@
     <Component class="javax.swing.JComboBox" name="selectedSearch">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="9">
+          <StringArray count="8">
             <StringItem index="0" value="Booking ID"/>
-            <StringItem index="1" value="Customer IC"/>
-            <StringItem index="2" value="Car ID"/>
-            <StringItem index="3" value="Car Brand"/>
-            <StringItem index="4" value="Booking Status"/>
-            <StringItem index="5" value="Payment Status"/>
-            <StringItem index="6" value="Start Rent Date (yyyy/mm/dd)"/>
-            <StringItem index="7" value="End Rent Date (yyyy/mm/dd)"/>
-            <StringItem index="8" value="Unconfirmed"/>
+            <StringItem index="1" value="Start Rent Date (yyyy/mm/dd)"/>
+            <StringItem index="2" value="End Rent Date (yyyy/mm/dd)"/>
+            <StringItem index="3" value="Unconfirmed Bookings"/>
+            <StringItem index="4" value="Confirmed Bookings"/>
+            <StringItem index="5" value="Declined Bookings"/>
+            <StringItem index="6" value="Paid Bookings"/>
+            <StringItem index="7" value="Unpaid Bookings"/>
           </StringArray>
         </Property>
       </Properties>
@@ -178,9 +153,9 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="9" rowCount="4">
                 <Column editable="false" title="BID" type="java.lang.Object"/>
-                <Column editable="false" title="UID" type="java.lang.Object"/>
-                <Column editable="false" title="Name" type="java.lang.Object"/>
-                <Column editable="false" title="Car ID" type="java.lang.Object"/>
+                <Column editable="false" title="Car Brand" type="java.lang.Object"/>
+                <Column editable="false" title="Car Type" type="java.lang.Object"/>
+                <Column editable="false" title="Car Plate" type="java.lang.Object"/>
                 <Column editable="false" title="Start Rent" type="java.lang.Object"/>
                 <Column editable="false" title="End Rent" type="java.lang.Object"/>
                 <Column editable="false" title="Status" type="java.lang.Object"/>
@@ -207,138 +182,15 @@
         <Property name="text" type="java.lang.String" value="Booking Info"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="deleteBookingButton">
+    <Component class="javax.swing.JButton" name="cancelBookingButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Delete"/>
+        <Property name="text" type="java.lang.String" value="Cancel Booking"/>
         <Property name="actionCommand" type="java.lang.String" value=""/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteBookingButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelBookingButtonActionPerformed"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JPanel" name="customerDetailsPanel">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Customer Details">
-              <Font PropertyName="font" name="sansserif" size="12" style="1"/>
-            </TitledBorder>
-          </Border>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="userIDLabel" min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="usernameLabel" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="emailLabel" min="-2" pref="49" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="emailDisplay" pref="183" max="32767" attributes="0"/>
-                      <Component id="usernameDisplay" max="32767" attributes="0"/>
-                      <Component id="userIDDisplay" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="phoneNoLabel" max="32767" attributes="0"/>
-                      <Component id="ICLabel" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="ICDisplay" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="phoneNoDisplay" min="-2" pref="200" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="userIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="userIDDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="usernameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="usernameDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ICLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ICDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="emailLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="emailDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="phoneNoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="phoneNoDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JTextField" name="ICDisplay">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="phoneNoDisplay">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="ICLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="IC:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="phoneNoLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Phone No:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="userIDLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="User ID:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="userIDDisplay">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="usernameLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Name:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="usernameDisplay">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="emailLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Email:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="emailDisplay">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Container class="javax.swing.JPanel" name="carDetailsPanel">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -493,7 +345,7 @@
                       <Group type="102" attributes="0">
                           <Component id="paymentAmountLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="paymentAmountDisplay" max="32767" attributes="0"/>
+                          <Component id="paymentAmountDisplay" pref="130" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -516,7 +368,7 @@
                           <Component id="endRentLabel" max="32767" attributes="0"/>
                           <Component id="bookingStatusLabel" pref="88" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="paymentStatusLabel" max="32767" attributes="0"/>
+                      <Component id="paymentStatusLabel" pref="88" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -637,42 +489,13 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="declineBookingButton">
+    <Component class="javax.swing.JButton" name="makePaymentButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Decline"/>
+        <Property name="text" type="java.lang.String" value="Make Payment"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="declineBookingButtonActionPerformed"/>
-      </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="declineBookingButton.setVisible(false);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="makePaymentButton.setVisible(false);"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="confirmBookingButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Confirm"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmBookingButtonActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="confirmBookingButton.setVisible(false);"/>
-      </AuxValues>
-    </Component>
-    <Container class="javax.swing.JPanel" name="jPanel1">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="145" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
   </SubComponents>
 </Form>

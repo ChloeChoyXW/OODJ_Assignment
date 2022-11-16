@@ -93,7 +93,7 @@ public class Functions {
                     return carList;
                     
                 case "booking":
-                    ArrayList<Bookings> bookList = new ArrayList<>();
+                    ArrayList<Booking> bookList = new ArrayList<>();
                     File bookingFile = new File("bookings.txt");
                     Scanner bookingInfo = new Scanner(bookingFile);
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
@@ -102,7 +102,7 @@ public class Functions {
                         row = bookingInfo.nextLine();
                         if(!row.equals("")){
                             data = row.split("[|]");
-                            bookList.add(new Bookings(data[0], new Member(data[1]), new Car(data[2]), LocalDateTime.parse(data[3], formatter), LocalDateTime.parse(data[4], formatter), data[5], Double.parseDouble(data[6]), data[7]));
+                            bookList.add(new Booking(data[0], new Member(data[1]), new Car(data[2]), LocalDateTime.parse(data[3], formatter), LocalDateTime.parse(data[4], formatter), data[5], Double.parseDouble(data[6]), data[7]));
                         }
                     }
                     bookingInfo.close();
@@ -117,10 +117,10 @@ public class Functions {
 
         
 //      write updated details to file
-    public static void updateBookingDetails(ArrayList<Bookings> templist) throws IOException {
+    public static void updateBookingDetails(ArrayList<Booking> templist) throws IOException {
         try {
             PrintWriter bookingDetails = new PrintWriter(new FileWriter("bookings.txt", false));
-            for(Bookings b : templist){
+            for(Booking b : templist){
                 bookingDetails.write(b.toString() + System.lineSeparator());
             }            
             bookingDetails.close();         
@@ -193,7 +193,7 @@ public class Functions {
     }
     
 //    Add details to textfile
-    public static void addBookings(Bookings details) throws IOException {
+    public static void addBookings(Booking details) throws IOException {
         try {
             PrintWriter bookingDetails = new PrintWriter(new FileWriter("bookings.txt", true));
             bookingDetails.write(details.toString() + System.lineSeparator());

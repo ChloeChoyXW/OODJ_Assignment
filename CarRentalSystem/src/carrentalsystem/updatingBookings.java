@@ -7,7 +7,7 @@ package carrentalsystem;
 import static carrentalsystem.Functions.readTextFile;
 import static carrentalsystem.Functions.updateBookingDetails;
 import static carrentalsystem.Functions.addBookings;
-import carrentalsystem.Bookings;
+import carrentalsystem.Booking;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,10 +18,10 @@ import java.util.Scanner;
 public class updatingBookings {
     public static void UpdatingBookings() throws IOException {
     
-        ArrayList <Bookings> bookingsList = readTextFile ( "bookings" );
+        ArrayList <Booking> bookingsList = readTextFile ( "bookings" );
         System.out.println(bookingsList);
         
-        ArrayList<Bookings> updateBList = new ArrayList<>();
+        ArrayList<Booking> updateBList = new ArrayList<>();
         
         Scanner bookingsid = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Please input your BookingID: ");
@@ -31,7 +31,7 @@ public class updatingBookings {
         System.out.println("Please edit your required details: ");
         String bdetails = updatebdetails.nextLine();
 
-        for(Bookings i: bookingsList) {
+        for(Booking i: bookingsList) {
             if(bookingID.equals(i.getBookingID())) {
                 i.setBookingID(bdetails);
                 updateBList.add(i);
@@ -47,14 +47,14 @@ public class updatingBookings {
     public class removingBookings {                                                                  //need to add in functions, lmk if i can do it if this is right
     public static void RemovingBookings() throws IOException {
     
-        ArrayList <Bookings> bookingsList = readTextFile ( "bookings" );
+        ArrayList <Booking> bookingsList = readTextFile ( "bookings" );
         System.out.println(bookingsList);
     
         Scanner bookingsid = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Please input your BookingID: ");
         String bookingID = bookingsid.nextLine();
         
-        for(Bookings i: bookingsList) {
+        for(Booking i: bookingsList) {
             if(bookingID.equals(i.getBookingID())) {                                          //very unsure if itll remove the line
                 bookingsList.remove(i);
             }
@@ -77,7 +77,7 @@ public static void addBookings() throws IOException {
     double paymentAmount = 600.00;
     String paymentStatus = "Paid";
         
-        Bookings newBookings = new Bookings(bookingID, uid, startDate, endDate, bookingStatus, paymentAmount, paymentStatus);
+        Booking newBookings = new Booking(bookingID, uid, startDate, endDate, bookingStatus, paymentAmount, paymentStatus);
         addBookings();
     }
 }

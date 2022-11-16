@@ -11,7 +11,7 @@ package carrentalsystem;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-public class Bookings {
+public class Booking {
     private String bookingID;
     private Member member;
     private Car car;
@@ -22,7 +22,7 @@ public class Bookings {
     private String paymentStatus;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 
-    public Bookings() {
+    public Booking() {
         bookingID = null;
         member = null;
         car = null;
@@ -33,7 +33,7 @@ public class Bookings {
         paymentStatus = null;
     }
 
-    public Bookings(String bookingID, Member member, Car car, LocalDateTime startDate, LocalDateTime endDate, String bookingStatus, double paymentAmount, String paymentStatus) {
+    public Booking(String bookingID, Member member, Car car, LocalDateTime startDate, LocalDateTime endDate, String bookingStatus, double paymentAmount, String paymentStatus) {
         this.bookingID = bookingID;
         this.member = member;
         this.car = car;

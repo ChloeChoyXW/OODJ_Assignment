@@ -18,12 +18,12 @@ public class HandleBookingInfo {
     
     public static void confirmBooking() throws IOException{
         
-        ArrayList<Bookings> bookingList = readTextFile("booking");
-        ArrayList<Bookings> unconfirmedBookingList = new ArrayList<>();
-        ArrayList<Bookings> updatedBookingList = new ArrayList<>();
+        ArrayList<Booking> bookingList = readTextFile("booking");
+        ArrayList<Booking> unconfirmedBookingList = new ArrayList<>();
+        ArrayList<Booking> updatedBookingList = new ArrayList<>();
         
         //show uncomfirmed bookings
-        for(Bookings b : bookingList){
+        for(Booking b : bookingList){
             if(b.getBookingStatus().equalsIgnoreCase("unconfirmed")){
                 unconfirmedBookingList.add(b);
             }
@@ -35,7 +35,7 @@ public class HandleBookingInfo {
         System.out.println("Enter Booking ID:");
         String id = bookingID.nextLine().toUpperCase();
         
-        for(Bookings i : bookingList){
+        for(Booking i : bookingList){
             if(i.getBookingID().equals(id)){
                 i.setBookingStatus("Unconfirmed");
                 updatedBookingList.add(i);
@@ -50,12 +50,12 @@ public class HandleBookingInfo {
     }
     
     public static void declineBooking() throws IOException{
-        ArrayList<Bookings> bookingList = readTextFile("booking");
-        ArrayList<Bookings> unconfirmedBookingList = new ArrayList<>();
-        ArrayList<Bookings> updatedBookingList = new ArrayList<>();
+        ArrayList<Booking> bookingList = readTextFile("booking");
+        ArrayList<Booking> unconfirmedBookingList = new ArrayList<>();
+        ArrayList<Booking> updatedBookingList = new ArrayList<>();
         
         //show uncomfirmed bookings
-        for(Bookings b : bookingList){
+        for(Booking b : bookingList){
             if(b.getBookingStatus().equalsIgnoreCase("unconfirmed")){
                 unconfirmedBookingList.add(b);
             }
@@ -67,7 +67,7 @@ public class HandleBookingInfo {
         System.out.println("Enter Booking ID:");
         String id = bookingID.nextLine().toUpperCase();
         
-        for(Bookings i : bookingList){
+        for(Booking i : bookingList){
             if(i.getBookingID().equals(id)){
                 i.setBookingStatus("Declined");
                 updatedBookingList.add(i);
@@ -82,13 +82,13 @@ public class HandleBookingInfo {
     }
         
         public static void removeBooking() throws IOException{
-            ArrayList<Bookings> bookingList = readTextFile("booking");
-            ArrayList<Bookings> updatedBookingList = new ArrayList<>();
+            ArrayList<Booking> bookingList = readTextFile("booking");
+            ArrayList<Booking> updatedBookingList = new ArrayList<>();
             Scanner bookingID = new Scanner(System.in);
             System.out.println("Enter Booking ID:");
             String id = bookingID.nextLine().toUpperCase();
             
-            for(Bookings i : bookingList){
+            for(Booking i : bookingList){
                if(!i.getBookingID().equals(id)){
                     updatedBookingList.add(i);     
                 } 
@@ -97,14 +97,14 @@ public class HandleBookingInfo {
         }
         
     public static void returnedCarBooking() throws IOException{
-        ArrayList<Bookings> bookingList = readTextFile("booking");
-        ArrayList<Bookings> updatedBookingList = new ArrayList<>();
+        ArrayList<Booking> bookingList = readTextFile("booking");
+        ArrayList<Booking> updatedBookingList = new ArrayList<>();
 
         Scanner bookingID = new Scanner(System.in);
         System.out.println("Enter Booking ID:");
         String id = bookingID.nextLine().toUpperCase();
 
-        for(Bookings i : bookingList){
+        for(Booking i : bookingList){
             if(i.getBookingID().equals(id)){
                 i.setBookingStatus("Returned");
                 updatedBookingList.add(i);

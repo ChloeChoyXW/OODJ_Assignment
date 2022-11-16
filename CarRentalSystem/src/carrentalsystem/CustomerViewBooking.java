@@ -19,12 +19,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author USER
  */
-public class AdminViewBookingDetails extends javax.swing.JFrame {
+public class CustomerViewBooking extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public AdminViewBookingDetails() {
+    public CustomerViewBooking() {
         initComponents();
     }
 
@@ -45,18 +45,7 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
         displayBookingInfo = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         carInfoLabel = new javax.swing.JLabel();
-        deleteBookingButton = new javax.swing.JButton();
-        customerDetailsPanel = new javax.swing.JPanel();
-        ICDisplay = new javax.swing.JTextField();
-        phoneNoDisplay = new javax.swing.JTextField();
-        ICLabel = new javax.swing.JLabel();
-        phoneNoLabel = new javax.swing.JLabel();
-        userIDLabel = new javax.swing.JLabel();
-        userIDDisplay = new javax.swing.JTextField();
-        usernameLabel = new javax.swing.JLabel();
-        usernameDisplay = new javax.swing.JTextField();
-        emailLabel = new javax.swing.JLabel();
-        emailDisplay = new javax.swing.JTextField();
+        cancelBookingButton = new javax.swing.JButton();
         carDetailsPanel = new javax.swing.JPanel();
         carBrandLabel = new javax.swing.JLabel();
         carPlateLabel = new javax.swing.JLabel();
@@ -81,17 +70,14 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
         endRentDisplay = new javax.swing.JTextField();
         paymentStatusLabel = new javax.swing.JLabel();
         paymentStatusDisplay = new javax.swing.JTextField();
-        declineBookingButton = new javax.swing.JButton();
-        confirmBookingButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        makePaymentButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(2147483647, 1400));
         setMinimumSize(new java.awt.Dimension(811, 629));
         setResizable(false);
         setSize(new java.awt.Dimension(1112, 670));
 
-        selectedSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Booking ID", "Customer IC", "Car ID", "Car Brand", "Booking Status", "Payment Status", "Start Rent Date (yyyy/mm/dd)", "End Rent Date (yyyy/mm/dd)", "Unconfirmed" }));
+        selectedSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Booking ID", "Start Rent Date (yyyy/mm/dd)", "End Rent Date (yyyy/mm/dd)", "Unconfirmed Bookings", "Confirmed Bookings", "Declined Bookings", "Paid Bookings", "Unpaid Bookings" }));
 
         searchButton.setText("Search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +94,7 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "BID", "UID", "Name", "Car ID", "Start Rent", "End Rent", "Status", "Amount", "Payment"
+                "BID", "Car Brand", "Car Type", "Car Plate", "Start Rent", "End Rent", "Status", "Amount", "Payment"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -131,83 +117,13 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
         carInfoLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         carInfoLabel.setText("Booking Info");
 
-        deleteBookingButton.setText("Delete");
-        deleteBookingButton.setActionCommand("");
-        deleteBookingButton.addActionListener(new java.awt.event.ActionListener() {
+        cancelBookingButton.setText("Cancel Booking");
+        cancelBookingButton.setActionCommand("");
+        cancelBookingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteBookingButtonActionPerformed(evt);
+                cancelBookingButtonActionPerformed(evt);
             }
         });
-
-        customerDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Customer Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("sansserif", 1, 12))); // NOI18N
-
-        ICDisplay.setEditable(false);
-
-        phoneNoDisplay.setEditable(false);
-
-        ICLabel.setText("IC:");
-
-        phoneNoLabel.setText("Phone No:");
-
-        userIDLabel.setText("User ID:");
-
-        userIDDisplay.setEditable(false);
-
-        usernameLabel.setText("Name:");
-
-        usernameDisplay.setEditable(false);
-
-        emailLabel.setText("Email:");
-
-        emailDisplay.setEditable(false);
-
-        javax.swing.GroupLayout customerDetailsPanelLayout = new javax.swing.GroupLayout(customerDetailsPanel);
-        customerDetailsPanel.setLayout(customerDetailsPanelLayout);
-        customerDetailsPanelLayout.setHorizontalGroup(
-            customerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerDetailsPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(customerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(customerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(userIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(usernameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(customerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(emailDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                    .addComponent(usernameDisplay)
-                    .addComponent(userIDDisplay))
-                .addGap(35, 35, 35)
-                .addGroup(customerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(phoneNoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ICLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(customerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ICDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phoneNoDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        customerDetailsPanelLayout.setVerticalGroup(
-            customerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(customerDetailsPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(customerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userIDLabel)
-                    .addComponent(userIDDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(customerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(usernameLabel)
-                    .addComponent(usernameDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ICLabel)
-                    .addComponent(ICDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(customerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailLabel)
-                    .addComponent(emailDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phoneNoLabel)
-                    .addComponent(phoneNoDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
-        );
 
         carDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "Car Rented", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("sansserif", 1, 12)))); // NOI18N
 
@@ -318,7 +234,7 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
                     .addGroup(bookingDetailsPanelLayout.createSequentialGroup()
                         .addComponent(paymentAmountLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(paymentAmountDisplay))
+                        .addComponent(paymentAmountDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                     .addGroup(bookingDetailsPanelLayout.createSequentialGroup()
                         .addGroup(bookingDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bookingIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -334,7 +250,7 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
                     .addGroup(bookingDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(endRentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bookingStatusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-                    .addComponent(paymentStatusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(paymentStatusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bookingDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bookingStatusDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -374,75 +290,42 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        declineBookingButton.setText("Decline");
-        declineBookingButton.setVisible(false);
-        declineBookingButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                declineBookingButtonActionPerformed(evt);
-            }
-        });
-
-        confirmBookingButton.setText("Confirm");
-        confirmBookingButton.setVisible(false);
-        confirmBookingButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmBookingButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 145, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 25, Short.MAX_VALUE)
-        );
+        makePaymentButton.setText("Make Payment");
+        makePaymentButton.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
+                        .addComponent(carDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(398, 398, 398)
-                                        .addComponent(confirmBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(declineBookingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(customerDetailsPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 560, Short.MAX_VALUE)
-                                    .addComponent(bookingDetailsPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(carDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(deleteBookingButton)
-                                                .addGap(12, 12, 12))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(51, 51, 51)
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(carInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(selectedSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(searchButton))
+                                .addComponent(bookingDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(191, 191, 191)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cancelBookingButton)
+                                    .addComponent(makePaymentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1053, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(selectedSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(searchButton))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1053, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
@@ -459,40 +342,32 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(bookingDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(deleteBookingButton)
-                            .addComponent(declineBookingButton)
-                            .addComponent(confirmBookingButton))
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(carDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookingDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(customerDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(16, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68))))
+                        .addComponent(carDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(cancelBookingButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(makePaymentButton)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         bookingDetailsPanel.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//BY DEFAULT PLS SHOW ALL BOOKINGS ALSO AUTO GET CUSTOMER ID ALSO DO MAKE PAYMENT
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         String input = selectedSearch.getSelectedItem().toString();
         String searchText = searchInput.getText();
         ArrayList<Booking> bookingDetails = showBookingInfo(input, searchText);
-        DisplayBookingsTable(bookingDetails); 
-        if(input.equalsIgnoreCase("Unconfirmed")){
-            confirmBookingButton.setVisible(true);
-            declineBookingButton.setVisible(true);
-            deleteBookingButton.setVisible(false);
+        DisplayBookings(bookingDetails); 
+        if(input.equalsIgnoreCase("Unpaid Bookings")){
+            makePaymentButton.setVisible(true);
         }
         searchInput.setText(null);
         
@@ -509,11 +384,6 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
         paymentAmountDisplay.setText(null);
         paymentStatusDisplay.setText(null);
 
-        userIDDisplay.setText(null);
-        usernameDisplay.setText(null);
-        ICDisplay.setText(null);
-        emailDisplay.setText(null);
-        phoneNoDisplay.setText(null);
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void displayBookingInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_displayBookingInfoMouseClicked
@@ -523,7 +393,7 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_displayBookingInfoMouseClicked
     
-    private void deleteBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBookingButtonActionPerformed
+    private void cancelBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBookingButtonActionPerformed
         ArrayList<Booking> bookingList = readTextFile("booking");
         ArrayList<Booking> updatedBookingList = new ArrayList<>();
         String id = bookingIDDisplay.getText();
@@ -538,131 +408,22 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
             updateBookingDetails(updatedBookingList);
         } catch (IOException ex) {
             messageBox("Error occured! Please try again!");
-            Logger.getLogger(AdminViewBookingDetails.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerViewBooking.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        searchInput.setText(null);
-        
-        carIDDisplay.setText(null);
-        carBrandDisplay.setText(null);
-        carTypeDisplay.setText(null);
-        carPlateDisplay.setText(null);
-        seatNoDisplay.setText(null);
-        
-        bookingIDDisplay.setText(null);
-        bookingStatusDisplay.setText(null);
-        startRentDisplay.setText(null);
-        endRentDisplay.setText(null);
-        paymentAmountDisplay.setText(null);
-        paymentStatusDisplay.setText(null);
-
-        userIDDisplay.setText(null);
-        usernameDisplay.setText(null);
-        ICDisplay.setText(null);
-        emailDisplay.setText(null);
-        phoneNoDisplay.setText(null);
-    }//GEN-LAST:event_deleteBookingButtonActionPerformed
-
-    private void confirmBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBookingButtonActionPerformed
-        ArrayList<Booking> bookingList = readTextFile("booking");
-        ArrayList<Booking> updatedBookingList = new ArrayList<>();
-        String id = bookingIDDisplay.getText();
-        
-        for(Booking i : bookingList){
-            if(i.getBookingID().equals(id)){
-                i.setBookingStatus("Unconfirmed");
-                updatedBookingList.add(i);
-                
-            }
-            else{
-                updatedBookingList.add(i);                
-            }
-        }
-        
-        try {
-            updateBookingDetails(updatedBookingList);            
-        } catch (IOException ex) {
-            Logger.getLogger(AdminViewBookingDetails.class.getName()).log(Level.SEVERE, null, ex);
-            messageBox("Error occured! Please try again!");
-        }
-        
-        searchInput.setText(null);
-        carIDDisplay.setText(null);
-        carBrandDisplay.setText(null);
-        carTypeDisplay.setText(null);
-        carPlateDisplay.setText(null);
-        seatNoDisplay.setText(null);
-        
-        bookingIDDisplay.setText(null);
-        bookingStatusDisplay.setText(null);
-        startRentDisplay.setText(null);
-        endRentDisplay.setText(null);
-        paymentAmountDisplay.setText(null);
-        paymentStatusDisplay.setText(null);
-
-        userIDDisplay.setText(null);
-        usernameDisplay.setText(null);
-        ICDisplay.setText(null);
-        emailDisplay.setText(null);
-        phoneNoDisplay.setText(null);
-    }//GEN-LAST:event_confirmBookingButtonActionPerformed
-
-    private void declineBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineBookingButtonActionPerformed
-        ArrayList<Booking> bookingList = readTextFile("booking");
-        ArrayList<Booking> updatedBookingList = new ArrayList<>();
-        String id = bookingIDDisplay.getText();
-        
-        
-        for(Booking i : bookingList){
-            if(i.getBookingID().equals(id)){
-                i.setBookingStatus("Declined");
-                updatedBookingList.add(i);
-                
-            }
-            else{
-                updatedBookingList.add(i);                
-            }
-        }
-        
-        try {
-            updateBookingDetails(updatedBookingList);
-        } catch (IOException ex) {
-            Logger.getLogger(AdminViewBookingDetails.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        searchInput.setText(null);
-        carIDDisplay.setText(null);
-        carBrandDisplay.setText(null);
-        carTypeDisplay.setText(null);
-        carPlateDisplay.setText(null);
-        seatNoDisplay.setText(null);
-        
-        bookingIDDisplay.setText(null);
-        bookingStatusDisplay.setText(null);
-        startRentDisplay.setText(null);
-        endRentDisplay.setText(null);
-        paymentAmountDisplay.setText(null);
-        paymentStatusDisplay.setText(null);
-
-        userIDDisplay.setText(null);
-        usernameDisplay.setText(null);
-        ICDisplay.setText(null);
-        emailDisplay.setText(null);
-        phoneNoDisplay.setText(null);
-    }//GEN-LAST:event_declineBookingButtonActionPerformed
+    }//GEN-LAST:event_cancelBookingButtonActionPerformed
     
     //show booking details after clicked from table
     private void setBookingDetails(int row){
         ArrayList<Booking> bookingList = readTextFile("booking");
-        ArrayList<Member> memberList = readTextFile("member");
         ArrayList<Car> carList = readTextFile("car");  
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-        
+        String carID = null;
+      
         String bookingID = displayBookingInfo.getModel().getValueAt(row, 0).toString();
-        String userID = displayBookingInfo.getModel().getValueAt(row, 1).toString();
-        String carID = displayBookingInfo.getModel().getValueAt(row, 3).toString();
+
         for(Booking b : bookingList){
             if(bookingID.equals(b.getBookingID())){
+                carID = b.getCar().getCarID();
                 bookingIDDisplay.setText(b.getBookingID());
                 bookingStatusDisplay.setText(b.getBookingStatus());
                 startRentDisplay.setText(b.getStartDate().format(formatter));
@@ -672,15 +433,7 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
             }
         }
         
-        for(Member m : memberList){
-            if(userID.equals(m.getUid())){
-                userIDDisplay.setText(m.getUid());
-                usernameDisplay.setText(m.getName());
-                ICDisplay.setText(String.valueOf(m.getIcNo()));
-                emailDisplay.setText(m.getEmail());
-                phoneNoDisplay.setText(String.valueOf(m.getPhoneNo()));
-            }
-        }
+
         
         for(Car c : carList){
             if(carID.equals(c.getCarID())){
@@ -709,39 +462,6 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
                     }
                     return bookingDetails;    
                 
-                    
-                case "Customer IC":
-                    for(Member m : memberList) {
-                        if(Long.parseLong(searchText)==m.getIcNo()){
-                            for(Booking b : bookingList){                               
-                                if (m.getUid().equals(b.getMember().getUid())) {
-                                    bookingDetails.add(b);
-                                }   
-                            }
-                        }   
-                    }
-                    return bookingDetails;
-
-                case "Car ID":
-                    for (Booking b : bookingList) {    
-                        if (searchText.equalsIgnoreCase(b.getCar().getCarID())) {
-                            bookingDetails.add(b);
-                        }
-                    }
-                    return bookingDetails;
-                    
-                    
-                case "Car Brand":
-                    for(Car c : carList){
-                        if(searchText.equalsIgnoreCase(c.getBrand())){
-                           for (Booking b : bookingList) {    
-                                if (c.getCarID().equals(b.getCar().getCarID())) {
-                                    bookingDetails.add(b);
-                                }
-                            } 
-                        }
-                    }
-                    return bookingDetails;
 
                 case "Start Rent Date (yyyy/mm/dd)": 
                     String startDate = searchText + " 00:00";
@@ -766,26 +486,42 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
                         }
                     }
                     return bookingDetails;
-                    
-                case "Booking Status":
+
+                case "Confirmed Bookings":
                     for (Booking b : bookingList) {
-                        if (searchText.equalsIgnoreCase(b.getBookingStatus())) {
+                        if (b.getBookingStatus().equalsIgnoreCase("Confirmed")) {
                             bookingDetails.add(b);
                         }
                     }
                     return bookingDetails;
                     
-                case "Payment Status":
+                case "Declined Bookings":
                     for (Booking b : bookingList) {
-                        if (searchText.equalsIgnoreCase(b.getPaymentStatus())) {
+                        if (b.getBookingStatus().equalsIgnoreCase("Declined")) {
                             bookingDetails.add(b);
                         }
                     }
                     return bookingDetails;
                     
-                case "Unconfirmed":
+                case "Unconfirmed Bookings":
                     for (Booking b : bookingList) {
                         if (b.getBookingStatus().equalsIgnoreCase("Unconfirmed")) {
+                            bookingDetails.add(b);
+                        }
+                    }
+                    return bookingDetails;
+                    
+                case "Paid Bookings":
+                    for (Booking b : bookingList) {
+                        if (b.getPaymentStatus().equalsIgnoreCase("Paid")) {
+                            bookingDetails.add(b);
+                        }
+                    }
+                    return bookingDetails;
+                    
+                case "Unpaid Bookings":
+                    for (Booking b : bookingList) {
+                        if (b.getPaymentStatus().equalsIgnoreCase("Unpaid")) {
                             bookingDetails.add(b);
                         }
                     }
@@ -795,15 +531,18 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
         } catch (IllegalArgumentException e) {
             messageBox("Details not found! Please try again!");
             Logger.getLogger(AdminViewCarDetails.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println(e);
             
         }
         return null;
     }
     
-    private void DisplayBookingsTable(ArrayList<Booking> bookingList) { 
-        ArrayList<Member> memberList = readTextFile("member");
+    private void DisplayBookings(ArrayList<Booking> bookingList) { 
+        ArrayList<Car> carList = readTextFile("car");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-        String username = null;
+        String carBrand = null;
+        String carType = null;
+        String carPlate = null;
         
         try {
             DefaultTableModel tableModel = (DefaultTableModel)displayBookingInfo.getModel();
@@ -812,23 +551,23 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
             //get and set data to table
             if(!bookingList.isEmpty()){
                 for(Booking b : bookingList){
-                    String bookID = b.getBookingID();
-                    String UID = b.getMember().getUid();                   
-                    String carID = b.getCar().getCarID();
+                    String bookID = b.getBookingID();                
                     String startRent = b.getStartDate().format(formatter);
                     String endRent = b.getEndDate().format(formatter);
                     String bookingStatus = b.getBookingStatus();
                     Double payAmount = b.getPaymentAmount();
                     String paymentStatus = b.getPaymentStatus();
                     
-                    for(Member m : memberList){
-                        if(b.getMember().getUid().equalsIgnoreCase(m.getUid())){
-                            username = m.getName();
+                    for(Car c : carList){
+                        if(c.getCarID().equalsIgnoreCase(b.getCar().getCarID())){
+                            carBrand = c.getBrand();
+                            carType = c.getCarType();
+                            carPlate = c.getCarPlate();
                         }
                     }
                     
                     
-                    Object[] data = {bookID, UID, username, carID, startRent, endRent, bookingStatus, payAmount, paymentStatus};
+                    Object[] data = {bookID, carBrand, carType, carPlate, startRent, endRent, bookingStatus, payAmount, paymentStatus};
                     tableModel.addRow(data);
                 }
             }
@@ -860,14 +599,15 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminViewBookingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerViewBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminViewBookingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerViewBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminViewBookingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerViewBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminViewBookingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerViewBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
 
@@ -875,7 +615,7 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminViewBookingDetails().setVisible(true);
+                new CustomerViewBooking().setVisible(true);
                 
             }
             
@@ -884,14 +624,13 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ICDisplay;
-    private javax.swing.JLabel ICLabel;
     private javax.swing.JPanel bookingDetailsPanel;
     private javax.swing.JTextField bookingIDDisplay;
     private javax.swing.JLabel bookingIDLabel;
     private javax.swing.JTextField bookingStatusDisplay;
     private javax.swing.JLabel bookingStatusLabel;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton cancelBookingButton;
     private javax.swing.JTextField carBrandDisplay;
     private javax.swing.JLabel carBrandLabel;
     private javax.swing.JPanel carDetailsPanel;
@@ -902,24 +641,16 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
     private javax.swing.JLabel carPlateLabel;
     private javax.swing.JTextField carTypeDisplay;
     private javax.swing.JLabel carTypeLabel;
-    private javax.swing.JButton confirmBookingButton;
-    private javax.swing.JPanel customerDetailsPanel;
-    private javax.swing.JButton declineBookingButton;
-    private javax.swing.JButton deleteBookingButton;
     private javax.swing.JTable displayBookingInfo;
-    private javax.swing.JTextField emailDisplay;
-    private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField endRentDisplay;
     private javax.swing.JLabel endRentLabel;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton makePaymentButton;
     private javax.swing.JTextField paymentAmountDisplay;
     private javax.swing.JLabel paymentAmountLabel;
     private javax.swing.JTextField paymentStatusDisplay;
     private javax.swing.JLabel paymentStatusLabel;
-    private javax.swing.JTextField phoneNoDisplay;
-    private javax.swing.JLabel phoneNoLabel;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchInput;
     private javax.swing.JTextField seatNoDisplay;
@@ -927,9 +658,5 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> selectedSearch;
     private javax.swing.JTextField startRentDisplay;
     private javax.swing.JLabel startRentLabel;
-    private javax.swing.JTextField userIDDisplay;
-    private javax.swing.JLabel userIDLabel;
-    private javax.swing.JTextField usernameDisplay;
-    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

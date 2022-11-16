@@ -16,7 +16,7 @@ import java.util.Scanner;
  */
 public class adminViewDetails {
     public static void showBooking(){
-        ArrayList<Bookings> bookingList = readTextFile("booking");
+        ArrayList<Booking> bookingList = readTextFile("booking");
         ArrayList<Member> memberList = readTextFile("member");
         ArrayList<Car> carList = readTextFile("car");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
@@ -30,7 +30,7 @@ public class adminViewDetails {
                     Scanner bid = new Scanner(System.in);
                     System.out.println("Enter Booking ID: ");
                     String bookingID = bid.nextLine();
-                    for(Bookings b : bookingList) {
+                    for(Booking b : bookingList) {
                         if (bookingID.equals(b.getBookingID())) {
                             System.out.println(b);
                         }
@@ -41,7 +41,7 @@ public class adminViewDetails {
                     Scanner uid = new Scanner(System.in);
                     System.out.println("Enter User ID: ");
                     String userID = uid.nextLine();
-                    for(Bookings b : bookingList) {                        
+                    for(Booking b : bookingList) {                        
                         if (userID.equals(b.getMember().getUid())) {
                             System.out.println(b);
                         }
@@ -54,7 +54,7 @@ public class adminViewDetails {
                     long userIC = Long.parseLong(ic.nextLine());
                     for(Member m : memberList) {
                         if(userIC==m.getIcNo()){
-                            for(Bookings b : bookingList){                               
+                            for(Booking b : bookingList){                               
                                 if (m.getUid().equals(b.getMember().getUid())) {
                                     System.out.println(b);
                                 }   
@@ -67,7 +67,7 @@ public class adminViewDetails {
                     Scanner cid = new Scanner(System.in);
                     System.out.println("Enter Car ID: ");
                     String carID = cid.nextLine();
-                    for (Bookings b : bookingList) {    
+                    for (Booking b : bookingList) {    
                         if (carID.equals(b.getCar().getCarID())) {
                             System.out.println(b);
                         }
@@ -80,7 +80,7 @@ public class adminViewDetails {
                     String carPlate = plateNum.nextLine();
                     for(Car c : carList){
                         if(carPlate.equals(c.getCarPlate())){
-                           for (Bookings b : bookingList) {    
+                           for (Booking b : bookingList) {    
                                 if (c.getCarID().equals(b.getCar().getCarID())) {
                                     System.out.println(b);
                                 }
@@ -95,7 +95,7 @@ public class adminViewDetails {
                     String carBrand = brand.nextLine();
                     for(Car c : carList){
                         if(carBrand.equalsIgnoreCase(c.getBrand())){
-                           for (Bookings b : bookingList) {    
+                           for (Booking b : bookingList) {    
                                 if (c.getCarID().equals(b.getCar().getCarID())) {
                                     System.out.println(b);
                                 }
@@ -111,7 +111,7 @@ public class adminViewDetails {
                     LocalDateTime startRentDate = LocalDateTime.parse(startDate, formatter);
                     LocalDateTime startRentDateRange = startRentDate.plusDays(1);
 
-                    for (Bookings b : bookingList) {
+                    for (Booking b : bookingList) {
                         if  (b.getStartDate().isAfter(startRentDate) && b.getStartDate().isBefore(startRentDateRange)) {
                             System.out.println(b);
                         }
@@ -125,7 +125,7 @@ public class adminViewDetails {
                     LocalDateTime endRentDate = LocalDateTime.parse(endDate, formatter);
                     LocalDateTime endRentDateRange = endRentDate.plusDays(1);
 
-                    for (Bookings b : bookingList) {
+                    for (Booking b : bookingList) {
                         if  (b.getEndDate().isAfter(endRentDate) && b.getEndDate().isBefore(endRentDateRange)) {
                             System.out.println(b);
                         }
@@ -136,7 +136,7 @@ public class adminViewDetails {
                     Scanner status = new Scanner(System.in);
                     System.out.println("Enter Booking Status: ");
                     String bookingStatus = status.nextLine();
-                    for (Bookings b : bookingList) {
+                    for (Booking b : bookingList) {
                         if (bookingStatus.equals(b.getBookingStatus())) {
                             System.out.println(b);
                         }
@@ -147,7 +147,7 @@ public class adminViewDetails {
                     Scanner payment = new Scanner(System.in);
                     System.out.println("Enter Payment Status: ");
                     String paymentStatus = payment.nextLine();
-                    for (Bookings b : bookingList) {
+                    for (Booking b : bookingList) {
                         if (paymentStatus.equals(b.getPaymentStatus())) {
                             System.out.println(b);
                         }
@@ -162,7 +162,7 @@ public class adminViewDetails {
 
     
     public static void showCustomerInfo(){
-        ArrayList<Bookings> bookingList = readTextFile("booking");
+        ArrayList<Booking> bookingList = readTextFile("booking");
         ArrayList<Member> memberList = readTextFile("member");
         
         Scanner uid = new Scanner(System.in);
@@ -175,7 +175,7 @@ public class adminViewDetails {
             }
         }
         
-        for(Bookings b : bookingList){
+        for(Booking b : bookingList){
             if(userID.equals(b.getMember().getUid())){
                 System.out.println(b);
             }

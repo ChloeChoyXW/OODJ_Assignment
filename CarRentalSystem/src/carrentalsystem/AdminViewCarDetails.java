@@ -44,27 +44,29 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         carInfoLabel = new javax.swing.JLabel();
         editAddCarLabel = new javax.swing.JLabel();
-        carIDDisplay = new javax.swing.JTextField();
-        carIDLabel = new javax.swing.JLabel();
-        carBrandLabel = new javax.swing.JLabel();
-        carBrandInput = new javax.swing.JTextField();
-        seatNumberLabel = new javax.swing.JLabel();
-        pricePerHourInput = new javax.swing.JTextField();
-        seatNumberInput = new javax.swing.JTextField();
-        carPlateLabel = new javax.swing.JLabel();
+        updateButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         pricePerHourLabel = new javax.swing.JLabel();
         carPlateInput = new javax.swing.JTextField();
         availabilityLabel = new javax.swing.JLabel();
+        carIDDisplay = new javax.swing.JTextField();
         availableButton = new javax.swing.JRadioButton();
+        carIDLabel = new javax.swing.JLabel();
         unavailableButton = new javax.swing.JRadioButton();
-        updateButton = new javax.swing.JButton();
+        carBrandLabel = new javax.swing.JLabel();
+        carBrandInput = new javax.swing.JTextField();
         carTypeInput = new javax.swing.JTextField();
+        seatNumberLabel = new javax.swing.JLabel();
         carTypeLabel = new javax.swing.JLabel();
+        pricePerHourInput = new javax.swing.JTextField();
+        seatNumberInput = new javax.swing.JTextField();
+        carPlateLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(811, 629));
+        setSize(new java.awt.Dimension(1112, 670));
 
-        selectedSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Car ID", "Brand", "Car Type", "Number of Seat", "Car Plate", "Availability" }));
+        selectedSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Car ID", "Brand", "Car Type", "Number of Seat", "Car Plate", "Car Available", "Car Unavailable" }));
 
         searchButton.setText("Search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -106,26 +108,6 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
         editAddCarLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         editAddCarLabel.setText("Edit/Add Car Info");
 
-        carIDDisplay.setEditable(false);
-
-        carIDLabel.setText("Car ID:");
-
-        carBrandLabel.setText("Brand:");
-
-        seatNumberLabel.setText("Seat Number:");
-
-        carPlateLabel.setText("Car Plate:");
-
-        pricePerHourLabel.setText("Price Per Hour:");
-
-        availabilityLabel.setText("Availability:");
-
-        buttonGroup1.add(availableButton);
-        availableButton.setText("Available");
-
-        buttonGroup1.add(unavailableButton);
-        unavailableButton.setText("Unavailable");
-
         updateButton.setText("Update");
         updateButton.setActionCommand("");
         updateButton.addActionListener(new java.awt.event.ActionListener() {
@@ -134,71 +116,124 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
             }
         });
 
+        pricePerHourLabel.setText("Price Per Hour:");
+
+        availabilityLabel.setText("Availability:");
+
+        carIDDisplay.setEditable(false);
+
+        buttonGroup1.add(availableButton);
+        availableButton.setText("Available");
+
+        carIDLabel.setText("Car ID:");
+
+        buttonGroup1.add(unavailableButton);
+        unavailableButton.setText("Unavailable");
+
+        carBrandLabel.setText("Brand:");
+
+        seatNumberLabel.setText("Seat Number:");
+
         carTypeLabel.setText("Car Type:");
+
+        carPlateLabel.setText("Car Plate:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(carIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(carBrandLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(seatNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pricePerHourLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(carIDDisplay)
+                        .addComponent(carBrandInput)
+                        .addComponent(seatNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pricePerHourInput, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(95, 95, 95)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(carPlateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(carPlateInput, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(carTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(carTypeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(availabilityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(availableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(unavailableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(carIDDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carIDLabel))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(carBrandLabel)
+                    .addComponent(carBrandInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carPlateLabel)
+                    .addComponent(carPlateInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(seatNumberLabel)
+                    .addComponent(seatNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carTypeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carTypeLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(availabilityLabel)
+                    .addComponent(availableButton)
+                    .addComponent(unavailableButton)
+                    .addComponent(pricePerHourLabel)
+                    .addComponent(pricePerHourInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(19, 19, 19)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(38, 38, 38)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(selectedSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(searchButton))
-                                        .addComponent(carInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(56, 56, 56)
-                                    .addComponent(editAddCarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(95, 95, 95))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(64, 64, 64)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(carIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                                            .addComponent(carBrandLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addComponent(seatNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(pricePerHourLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(carIDDisplay)
-                                            .addComponent(carBrandInput)
-                                            .addComponent(seatNumberInput, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
-                                        .addComponent(pricePerHourInput, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(164, 164, 164)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(carPlateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(carPlateInput, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(carTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(carTypeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(availabilityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(availableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(unavailableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(updateButton)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(selectedSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchButton))
+                            .addComponent(carInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 967, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editAddCarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1006, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(updateButton)
+                .addGap(389, 389, 389))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,36 +247,15 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
                     .addComponent(searchButton))
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(editAddCarLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(carIDDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(carIDLabel))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(carBrandLabel)
-                    .addComponent(carBrandInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(carPlateLabel)
-                    .addComponent(carPlateInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(seatNumberLabel)
-                    .addComponent(seatNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(carTypeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(carTypeLabel))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(availabilityLabel)
-                    .addComponent(availableButton)
-                    .addComponent(unavailableButton)
-                    .addComponent(pricePerHourLabel)
-                    .addComponent(pricePerHourInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
                 .addComponent(updateButton)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
@@ -251,31 +265,13 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
         String input = selectedSearch.getSelectedItem().toString();
         String searchText = searchInput.getText();
         ArrayList<Car> carDetails = showCarInfo(input, searchText);
-        DisplayRoomAvailableTable(carDetails);    
+        DisplayCarDetailsTable(carDetails);    
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void displayCarInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_displayCarInfoMouseClicked
         if(evt.getClickCount()>=2){
             int row = displayCarInfo.getSelectedRow();
-            String carID = displayCarInfo.getModel().getValueAt(row, 0).toString();
-            String carBrand = displayCarInfo.getModel().getValueAt(row, 1).toString();
-            String carType = displayCarInfo.getModel().getValueAt(row, 2).toString();
-            String seatNum = displayCarInfo.getModel().getValueAt(row, 3).toString();
-            String carPlate = displayCarInfo.getModel().getValueAt(row, 4).toString();
-            String price = displayCarInfo.getModel().getValueAt(row, 5).toString();
-            String availability = displayCarInfo.getModel().getValueAt(row, 6).toString();
-            
-            carIDDisplay.setText(carID);
-            carBrandInput.setText(carBrand);
-            carTypeInput.setText(carType);
-            seatNumberInput.setText(seatNum);
-            carPlateInput.setText(carPlate);
-            pricePerHourInput.setText(price);
-            if(availability.equalsIgnoreCase("Available")){
-                availableButton.setSelected(true);
-            }else{
-                unavailableButton.setSelected(true);
-            }
+            setCarDetails(row);
         }
     }//GEN-LAST:event_displayCarInfoMouseClicked
 
@@ -301,6 +297,29 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
         unavailableButton.setSelected(false);
         
     }//GEN-LAST:event_updateButtonActionPerformed
+    
+    //show car details after clicked from table
+    private void setCarDetails(int row){
+        String carID = displayCarInfo.getModel().getValueAt(row, 0).toString();
+            String carBrand = displayCarInfo.getModel().getValueAt(row, 1).toString();
+            String carType = displayCarInfo.getModel().getValueAt(row, 2).toString();
+            String seatNum = displayCarInfo.getModel().getValueAt(row, 3).toString();
+            String carPlate = displayCarInfo.getModel().getValueAt(row, 4).toString();
+            String price = displayCarInfo.getModel().getValueAt(row, 5).toString();
+            String availability = displayCarInfo.getModel().getValueAt(row, 6).toString();
+            
+            carIDDisplay.setText(carID);
+            carBrandInput.setText(carBrand);
+            carTypeInput.setText(carType);
+            seatNumberInput.setText(seatNum);
+            carPlateInput.setText(carPlate);
+            pricePerHourInput.setText(price);
+            if(availability.equalsIgnoreCase("Available")){
+                availableButton.setSelected(true);
+            }else{
+                unavailableButton.setSelected(true);
+            }
+    }
     
     //search filter
     private ArrayList showCarInfo(String input, String searchText) {
@@ -348,9 +367,17 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
                     }
                     return carDetails;
                     
-                case "Availability":
+                case "Car Available":
                     for (Car i : carList) {
-                        if (searchText.equalsIgnoreCase(i.getStatus())) {
+                        if (i.getStatus().equalsIgnoreCase("Available")) {
+                            carDetails.add(i);                            
+                        }
+                    }
+                    return carDetails;
+                    
+                case "Car Unavailable":
+                    for (Car i : carList) {
+                        if (i.getStatus().equalsIgnoreCase("Unavailable")) {
                             carDetails.add(i);                            
                         }
                     }
@@ -453,9 +480,8 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
                     updatedList.add(c);
                 }
             }
-            System.out.println(updatedList);
 
-    //        updateCarDetails(updatedList); 
+            updateCarDetails(updatedList); 
         }catch (Exception e) {
             messageBox("Error occured! Please try again!");
             Logger.getLogger(AdminViewCarDetails.class.getName()).log(Level.SEVERE, null, e);
@@ -463,7 +489,7 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
     } 
     
     //display data in table
-    private void DisplayRoomAvailableTable(ArrayList<Car> carList) {      
+    private void DisplayCarDetailsTable(ArrayList<Car> carList) {      
         
         try {
             DefaultTableModel tableModel = (DefaultTableModel)displayCarInfo.getModel();
@@ -551,6 +577,7 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
     private javax.swing.JLabel carTypeLabel;
     private javax.swing.JTable displayCarInfo;
     private javax.swing.JLabel editAddCarLabel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField pricePerHourInput;

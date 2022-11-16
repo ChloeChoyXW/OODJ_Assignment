@@ -10,6 +10,9 @@
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[811, 629]"/>
     </Property>
+    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1112, 670]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -31,84 +34,39 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jSeparator1" alignment="0" min="-2" pref="771" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane1" min="-2" pref="701" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="selectedSearch" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="searchInput" min="-2" pref="152" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="searchButton" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="carInfoLabel" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="selectedSearch" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="searchInput" min="-2" pref="152" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="searchButton" min="-2" max="-2" attributes="0"/>
                           </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                                  <Component id="editAddCarLabel" min="-2" pref="225" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="carIDLabel" pref="72" max="32767" attributes="0"/>
-                                          <Component id="carBrandLabel" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Component id="seatNumberLabel" min="-2" pref="82" max="-2" attributes="0"/>
-                                      <Component id="pricePerHourLabel" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="carIDDisplay" max="32767" attributes="0"/>
-                                          <Component id="carBrandInput" max="32767" attributes="0"/>
-                                          <Component id="seatNumberInput" alignment="0" pref="158" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Component id="pricePerHourInput" min="-2" pref="158" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="carPlateLabel" min="-2" pref="82" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="carPlateInput" min="-2" pref="158" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="carTypeLabel" min="-2" pref="82" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="carTypeInput" min="-2" pref="158" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="availabilityLabel" min="-2" pref="82" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="availableButton" min="-2" pref="98" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="unavailableButton" min="-2" pref="98" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="carInfoLabel" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="967" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="updateButton" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="editAddCarLabel" min="-2" pref="225" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="jSeparator1" min="-2" pref="1006" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="updateButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="389" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -125,40 +83,15 @@
               </Group>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="224" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="editAddCarLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="carIDDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="carIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="carBrandLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="carBrandInput" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="carPlateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="carPlateInput" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="seatNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="seatNumberInput" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="carTypeInput" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="carTypeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="availabilityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="availableButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="unavailableButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pricePerHourLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pricePerHourInput" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Component id="updateButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <EmptySpace pref="65" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -169,13 +102,14 @@
     <Component class="javax.swing.JComboBox" name="selectedSearch">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
+          <StringArray count="7">
             <StringItem index="0" value="Car ID"/>
             <StringItem index="1" value="Brand"/>
             <StringItem index="2" value="Car Type"/>
             <StringItem index="3" value="Number of Seat"/>
             <StringItem index="4" value="Car Plate"/>
-            <StringItem index="5" value="Availability"/>
+            <StringItem index="5" value="Car Available"/>
+            <StringItem index="6" value="Car Unavailable"/>
           </StringArray>
         </Property>
       </Properties>
@@ -237,65 +171,6 @@
         <Property name="text" type="java.lang.String" value="Edit/Add Car Info"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="carIDDisplay">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="carIDLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Car ID:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="carBrandLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Brand:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="carBrandInput">
-    </Component>
-    <Component class="javax.swing.JLabel" name="seatNumberLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Seat Number:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="pricePerHourInput">
-    </Component>
-    <Component class="javax.swing.JTextField" name="seatNumberInput">
-    </Component>
-    <Component class="javax.swing.JLabel" name="carPlateLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Car Plate:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="pricePerHourLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Price Per Hour:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="carPlateInput">
-    </Component>
-    <Component class="javax.swing.JLabel" name="availabilityLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Availability:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="availableButton">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Available"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="unavailableButton">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Unavailable"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="updateButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update"/>
@@ -305,12 +180,157 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="carTypeInput">
-    </Component>
-    <Component class="javax.swing.JLabel" name="carTypeLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Car Type:"/>
-      </Properties>
-    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="carIDLabel" max="32767" attributes="0"/>
+                          <Component id="carBrandLabel" min="-2" pref="72" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="seatNumberLabel" min="-2" pref="82" max="-2" attributes="0"/>
+                      <Component id="pricePerHourLabel" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="carIDDisplay" max="32767" attributes="0"/>
+                          <Component id="carBrandInput" max="32767" attributes="0"/>
+                          <Component id="seatNumberInput" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="pricePerHourInput" min="-2" pref="158" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="carPlateLabel" min="-2" pref="82" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="carPlateInput" min="-2" pref="158" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="carTypeLabel" min="-2" pref="82" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="carTypeInput" min="-2" pref="158" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="availabilityLabel" min="-2" pref="82" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="availableButton" min="-2" pref="98" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="unavailableButton" min="-2" pref="98" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="carIDDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="carIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="carBrandLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="carBrandInput" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="carPlateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="carPlateInput" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="seatNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="seatNumberInput" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="carTypeInput" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="carTypeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="availabilityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="availableButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="unavailableButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pricePerHourLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pricePerHourInput" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="pricePerHourLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Price Per Hour:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="carPlateInput">
+        </Component>
+        <Component class="javax.swing.JLabel" name="availabilityLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Availability:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="carIDDisplay">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="availableButton">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="buttonGroup1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Available"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="carIDLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Car ID:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="unavailableButton">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="buttonGroup1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Unavailable"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="carBrandLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Brand:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="carBrandInput">
+        </Component>
+        <Component class="javax.swing.JTextField" name="carTypeInput">
+        </Component>
+        <Component class="javax.swing.JLabel" name="seatNumberLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Seat Number:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="carTypeLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Car Type:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="pricePerHourInput">
+        </Component>
+        <Component class="javax.swing.JTextField" name="seatNumberInput">
+        </Component>
+        <Component class="javax.swing.JLabel" name="carPlateLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Car Plate:"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
