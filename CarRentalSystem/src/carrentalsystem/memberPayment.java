@@ -5,25 +5,27 @@
 package carrentalsystem;
 
 import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
  * @author USER
  */
-public class memberPayment {
+public class MemberPayment {
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
     private String uid;    
-    private long cardNo;
+    private String cardNo;
     private int cvv;
     private YearMonth expiryDate;
 
-    public memberPayment() {
+    public MemberPayment() {
         uid = null;
-        cardNo = 0;
+        cardNo = null;
         cvv = 0;
         expiryDate = null;
     }
 
-    public memberPayment(String uid, long cardNo, int cvv, YearMonth expiryDate) {
+    public MemberPayment(String uid, String cardNo, int cvv, YearMonth expiryDate) {
         this.uid = uid;
         this.cardNo = cardNo;
         this.cvv = cvv;
@@ -34,7 +36,7 @@ public class memberPayment {
         this.uid = uid;
     }
 
-    public void setCardNo(int cardNo) {
+    public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
     }
 
@@ -50,7 +52,7 @@ public class memberPayment {
         return uid;
     }
 
-    public long getCardNo() {
+    public String getCardNo() {
         return cardNo;
     }
 
@@ -64,9 +66,7 @@ public class memberPayment {
 
     @Override
     public String toString() {
-        return uid + "|" + cardNo + "|" + cvv + "|" + expiryDate;
-    }
-    
-    
+        return uid + "|" + cardNo + "|" + cvv + "|" + expiryDate.format(formatter);
+    }  
     
 }

@@ -57,13 +57,13 @@ public class Functions {
                         row = memberInfo.nextLine();
                         if(!row.equals("")){
                             data = row.split("[|]");
-                            memberList.add(new Member(data[0], data[1], data[2], data[3], Long.parseLong(data[4]),Long.parseLong(data[5]), data[6]));
+                            memberList.add(new Member(data[0], data[1], data[2], data[3], data[4],data[5], data[6]));
                         }
                     }
                     return memberList;
                     
                 case "payment":
-                    ArrayList<memberPayment> paymentList = new ArrayList<>();
+                    ArrayList<MemberPayment> paymentList = new ArrayList<>();
                     File paymentFile = new File("member_payment.txt");
                     Scanner paymentInfo = new Scanner(paymentFile);
 
@@ -71,7 +71,7 @@ public class Functions {
                         row = paymentInfo.nextLine();
                         if(!row.equals("")){
                             data = row.split("[|]");
-                            paymentList.add(new memberPayment(data[0], Long.parseLong(data[1]), Integer.parseInt(data[2]), stringToDate(data[3])));
+                            paymentList.add(new MemberPayment(data[0], data[1], Integer.parseInt(data[2]), stringToDate(data[3])));
                         }
                     }
                     paymentInfo.close();
@@ -147,10 +147,10 @@ public class Functions {
         }
     }
     
-    public static void updatePaymentDetails(ArrayList<memberPayment> templist) throws IOException {
+    public static void updatePaymentDetails(ArrayList<MemberPayment> templist) throws IOException {
         try {
             PrintWriter paymentDetails = new PrintWriter(new FileWriter("member_payment.txt", false));
-            for(memberPayment p : templist){
+            for(MemberPayment p : templist){
                 paymentDetails.write(p.toString() + System.lineSeparator());
             }            
             paymentDetails.close();         
@@ -219,7 +219,7 @@ public class Functions {
         }
     }
     
-    public static void addPaymentDetails(memberPayment details) throws IOException {
+    public static void addPaymentDetails(MemberPayment details) throws IOException {
         try {
             PrintWriter paymentDetails = new PrintWriter(new FileWriter("member_payment.txt", true));
             paymentDetails.write(details.toString() + System.lineSeparator());            
@@ -271,10 +271,11 @@ public class Functions {
 
         d.add(l);
         d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        d.setSize(200, 100);
+        d.setSize(300, 200);
         d.setLocationRelativeTo(null);
         d.setVisible(true);
     }
+    
         
 //  convert String to YearMonth    
     public static YearMonth stringToDate(String date){

@@ -1,7 +1,8 @@
-UID001|Michael Lee|John@@123456|john@gmail.com|98051714035|123456789|25, Jalan Merak, Bandar Merak, 47170, Selangor
-UID002|Adam|Micsmith@009#9|michelle08@yahoo.com|991231140968|192345876|48,Jalan Kepong, Kepong, 52100, Kuala Lumpur
-UID003|Richard Kord|Richie@@1009456|rich06@gmail.com|89070914056|123409859|25, Jalan Helang, Puchong, 47170, Selangor
-UID004|Jennie|Jenr@#6789|jennie8808@yahoo.com|901231140788|134568905|48,Jalan Tokong, Kepong, 52100, Kuala Lumpur
-UID005|Ren|Renning@@123456|ren@gmail.com|96051714033|123456789|25, Jalan Merak, Bandar Merak, 47170, Selangor
-UID006|Cecil|fyeu837|cecil123@gmail.com|237728117326|24358202|25, Jalan Merak, Bandar Merak, 47170, Selangor
-UID006|Cecil|fyeu837|cecil123@gmail.com|237728117326|24358202|25, Jalan Merak, Bandar Merak, 47170, Selangor
+UID001|Michael Lee|John@@123456|john@gmail.com|98051714035|0123456789|25, Jalan Merak, Bandar Merak, 47170, Selangor
+UID002|Adam|Micsmith@009#9|michelle08@yahoo.com|991231140968|0192345876|48,Jalan Kepong, Kepong, 52100, Kuala Lumpur
+UID003|Richard Kord|Richie@06234|richie06@gmail.com|89070914056|0191234567|25, Jalan Helang, Puchong, 47170, Selangor
+UID004|Jennie|Jenr@#6789|jennie8808@yahoo.com|901231140788|0134568905|48,Jalan Tokong, Kepong, 52100, Kuala Lumpur
+UID005|Ren|Renning@@123456|ren@gmail.com|96051714033|0123456789|25, Jalan Merak, Bandar Merak, 47170, Selangor
+UID006|Cecil|fyeu837|cecil123@gmail.com|237728117326|024358202|25, Jalan Merak, Bandar Merak, 47170, Selangor
+UID007|Susan Lee|Susanros@1234|susan@gmail.com|010921140986|0123456789|25, Jalan Helang, Bandar Helang, 47170, Selangor
+UID008|James Giorgio|Sjsdtd@7890hj|jamesgio@yahoo.com|998734506978|0120987986|48,Jalan Tun Razak, 52100, Kuala Lumpur

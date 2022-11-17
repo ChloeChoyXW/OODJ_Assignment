@@ -9,17 +9,17 @@ package carrentalsystem;
  * @author USER
  */
 public class Member extends User{
-    private long icNo;
-    private long phoneNo;
+    private String icNo;
+    private String phoneNo;
     private String address;
 
     public Member() {
-        icNo = 0;
-        phoneNo = 0;
+        icNo = null;
+        phoneNo = null;
         address = null;
     }
 
-    public Member(String uid, String name, String pw, String email, long icNo, long phoneNo, String address) {
+    public Member(String uid, String name, String pw, String email, String icNo, String phoneNo, String address) {
         super(uid, name, pw, email);
         this.icNo = icNo;
         this.phoneNo = phoneNo;
@@ -32,11 +32,11 @@ public class Member extends User{
     
     
 
-    public void setIcNo(long icNo) {
+    public void setIcNo(String icNo) {
         this.icNo = icNo;
     }
 
-    public void setPhoneNo(long phoneNo) {
+    public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
 
@@ -44,11 +44,11 @@ public class Member extends User{
         this.address = address;
     }
 
-    public long getIcNo() {
+    public String getIcNo() {
         return icNo;
     }
 
-    public long getPhoneNo() {
+    public String getPhoneNo() {
         return phoneNo;
     }
 

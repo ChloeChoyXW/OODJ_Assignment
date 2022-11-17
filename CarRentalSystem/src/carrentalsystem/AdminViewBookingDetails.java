@@ -712,7 +712,7 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
                     
                 case "Customer IC":
                     for(Member m : memberList) {
-                        if(Long.parseLong(searchText)==m.getIcNo()){
+                        if(searchText.equals(m.getIcNo())){
                             for(Booking b : bookingList){                               
                                 if (m.getUid().equals(b.getMember().getUid())) {
                                     bookingDetails.add(b);

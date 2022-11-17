@@ -51,9 +51,9 @@ public class adminViewDetails {
                 case "IC":
                     Scanner ic = new Scanner(System.in);
                     System.out.println("Enter User IC: ");
-                    long userIC = Long.parseLong(ic.nextLine());
+                    String userIC = ic.nextLine();
                     for(Member m : memberList) {
-                        if(userIC==m.getIcNo()){
+                        if(userIC.equals(m.getIcNo())){
                             for(Booking b : bookingList){                               
                                 if (m.getUid().equals(b.getMember().getUid())) {
                                     System.out.println(b);
