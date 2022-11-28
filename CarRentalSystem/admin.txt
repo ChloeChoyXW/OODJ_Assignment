@@ -1,5 +1,5 @@
-AID001|Alice|St@ff@123451|alice01@staff.com
-AID002|Mike|St@ff@123452|mike02@staff.com
-AID003|Jade|St@ff@123453|jade@staff.com
-AID004|Ali|St@ff@123455|ali@staff.com
-AID005|Kevin|St@ff@123456|kevin@staff.com
+AID001|Alice|St@ff@123451|alice01@staff.com|Manager
+AID002|Mike|St@ff@123452|mike02@staff.com|Staff
+AID003|Jade|St@ff@123453|jade@staff.com|Staff
+AID004|Ali|St@ff@123455|ali@staff.com|Staff
+AID005|Kevin|St@ff@123456|kevin@staff.com|Staff

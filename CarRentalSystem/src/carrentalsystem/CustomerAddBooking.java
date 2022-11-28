@@ -5,9 +5,10 @@
 package carrentalsystem;
 
 import static carrentalsystem.Functions.*;
-import static carrentalsystem.LoginDialog.uid;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,20 +17,82 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenu;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author USER
  */
-public class CustomerAddBookings extends javax.swing.JFrame {
-
+public class CustomerAddBooking extends javax.swing.JFrame {
+    private String uid = null;
     /**
      * Creates new form CustomerAddBookings
      */
-    public CustomerAddBookings() {
+    public CustomerAddBooking() {
         initComponents();
     }
+    
+    public CustomerAddBooking(String uid) {
+        initComponents();
+        if(!uid.isBlank()){
+            this.uid = uid;
+            Login.setText("Profile");
+            
+            JMenu viewBooking = new JMenu("View Bookings");
+            JMenu addBooking = new JMenu("Make Bookings");
+            JMenu logout = new JMenu("Logout");
+            MenuTab.add(viewBooking);
+            MenuTab.add(addBooking);
+            MenuTab.add(logout);
+            
+            viewBooking.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        viewBookingPage();
+                        
+                        
+                    }
+                });
+            
+            addBooking.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        addBookingPage();
+                        
+                        
+                    }
+                });
+            
+            logout.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        logoutPage();
+                        
+                        
+                    }
+                });   
+        }else{
+            this.main(null);
+        }
+    }
+    
+    public void viewBookingPage(){
+        CustomerViewBooking.customerViewBooking(this.uid);
+        this.dispose();
+    }
+    
+    public void addBookingPage(){
+        CustomerAddBooking.customerAddBooking(this.uid);
+        this.dispose();
+    }
+    
+        
+    public void logoutPage(){
+        CustomerAddBooking.main(null);
+        this.dispose();
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,6 +135,8 @@ public class CustomerAddBookings extends javax.swing.JFrame {
         totalPriceLabel = new javax.swing.JLabel();
         totalPriceDisplay = new javax.swing.JTextField();
         addBookingButton = new javax.swing.JButton();
+        MenuTab = new javax.swing.JMenuBar();
+        Login = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -315,6 +380,20 @@ public class CustomerAddBookings extends javax.swing.JFrame {
                 .addGap(0, 39, Short.MAX_VALUE))
         );
 
+        MenuTab.setToolTipText("");
+        MenuTab.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        Login.setText("Login");
+        Login.setActionCommand("");
+        Login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LoginMouseClicked(evt);
+            }
+        });
+        MenuTab.add(Login);
+
+        setJMenuBar(MenuTab);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -323,19 +402,18 @@ public class CustomerAddBookings extends javax.swing.JFrame {
                 .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addBookingsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
                     .addComponent(searchCarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchButton)
-                        .addGap(13, 13, 13))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE))
+                        .addComponent(searchButton)))
                 .addGap(77, 77, 77))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(23, 23, 23)
                 .addComponent(searchCarLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -345,7 +423,7 @@ public class CustomerAddBookings extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(addBookingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
@@ -404,6 +482,7 @@ public class CustomerAddBookings extends javax.swing.JFrame {
 
                 ArrayList<Car> carDetails = showCarInfo(input, searchText);
                 ArrayList<Car> carAvailableList = carAvailable(carDetails, startRentDate, endRentDate);
+                
                 DisplayCarDetailsTable(carAvailableList); 
             }catch(DateTimeParseException e){
                 messageBox("Please enter valid date format!");
@@ -438,6 +517,11 @@ public class CustomerAddBookings extends javax.swing.JFrame {
 
     private void addBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookingButtonActionPerformed
         ArrayList<Booking> bookingList = readTextFile("booking");
+        if(this.uid == null){
+            messageBox("Please login to make booking!");
+            LoginDialog.login();
+            this.dispose();
+        }
         int lastIndex = 0;
         int newIDNumber = 0;
         String newID = null;
@@ -476,20 +560,47 @@ public class CustomerAddBookings extends javax.swing.JFrame {
              String newBookingID = "BK" + newID + String.valueOf(newIDNumber);
             
         try {
-            addBookings(new Booking(newBookingID, uid ,carID, startRent, endRent, bookingStatus, totalPrice, paymentStatus));
+            addBookings(new Booking(newBookingID, new Member(uid) ,carID, startRent, endRent, bookingStatus, totalPrice, paymentStatus));
+            carIDDisplay.setText("");
+            carBrandDisplay.setText("");
+            carTypeInput.setText("");
+            seatNumDisplay.setText("");
+            carPlateDisplay.setText("");
+            pricePerHourDisplay.setText("");
+            startRentDateDisplay.setText("");
+            endRentDateDisplay.setText("");
+            totalPriceDisplay.setText("");
         } catch (IOException ex) {
-            Logger.getLogger(CustomerAddBookings.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerAddBooking.class.getName()).log(Level.SEVERE, null, ex);
             messageBox("Error occured! Please try again!");
         }
     }//GEN-LAST:event_addBookingButtonActionPerformed
 
+    private void LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginMouseClicked
+        if(Login.getText().equals("Login")){
+            LoginDialog.login();
+            this.dispose();
+        }else{
+            CustomerProfile.customerProfile(uid);
+            this.dispose();
+        }
+        
+    }//GEN-LAST:event_LoginMouseClicked
+    
+    
+    
+    private void addBookingMouseClicked(java.awt.event.MouseEvent evt){
+        CustomerAddBooking.customerAddBooking(this.uid);
+        this.dispose();
+    }
+    
     private ArrayList carAvailable(ArrayList<Car> carFilterList,LocalDateTime startRentDate, LocalDateTime endRentDate){
         ArrayList<Booking> bookingList = readTextFile("booking");
         ArrayList<Car> carAvailableList = new ArrayList<>();
 
         for(Booking b : bookingList){
             //check car unavailable for booking date
-            if(!((startRentDate.isBefore(b.getStartDate()) && endRentDate.isBefore(b.getStartDate())) || (endRentDate.isAfter(b.getEndDate()) && startRentDate.isAfter(b.getEndDate())))){
+            if(!((startRentDate.isBefore(b.getStartDate()) && endRentDate.isBefore(b.getStartDate())) || !(endRentDate.isAfter(b.getEndDate()) && startRentDate.isAfter(b.getEndDate())))){
                 //add available car with filter search
                 for(Car c : carFilterList){
                     if(!c.getCarID().equals(b.getCar().getCarID())){
@@ -586,7 +697,7 @@ public class CustomerAddBookings extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void customerAddBooking() {
+    public static void customerAddBooking(String uid) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -600,25 +711,63 @@ public class CustomerAddBookings extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerAddBookings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerAddBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerAddBookings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerAddBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerAddBookings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerAddBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerAddBookings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerAddBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new CustomerAddBookings().setVisible(true);
+                new CustomerAddBooking(uid).setVisible(true);
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(CustomerAddBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CustomerAddBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CustomerAddBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CustomerAddBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CustomerAddBooking().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Login;
+    private javax.swing.JMenuBar MenuTab;
     private javax.swing.JButton addBookingButton;
     private javax.swing.JLabel addBookingLabel;
     private javax.swing.JPanel addBookingsPanel;

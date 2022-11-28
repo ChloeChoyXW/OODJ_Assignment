@@ -4,7 +4,6 @@
  */
 package carrentalsystem;
 
-
 /**
  *
  * @author USER
@@ -103,7 +102,4 @@ public class Car {
     public String toString() {
         return carID + "|" + brand + "|" + carType + "|" + seatNum + "|" + carPlate + "|" + pricePerHour + "|" + status;
     }
-    
-    
-    
 }

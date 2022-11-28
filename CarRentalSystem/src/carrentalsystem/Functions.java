@@ -15,8 +15,6 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,7 +40,7 @@ public class Functions {
                         row = adminInfo.nextLine();
                         if(!row.equals("")){
                             data = row.split("[|]");
-                            adminList.add(new User(data[0], data[1], data[2], data[3]));
+                            adminList.add(new User(data[0], data[1], data[2], data[3], data[4]));
                         }
                     }
                     adminInfo.close();
@@ -127,8 +125,7 @@ public class Functions {
             messageBox("Booking details updated!");
         }
         catch (IOException e){
-//            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
-            System.out.println("Try again");
+            messageBox("Error occured! Please try again.");
         }
     }
     
@@ -142,8 +139,7 @@ public class Functions {
             messageBox("Member details updated!");        
         }
         catch (IOException e){
-//            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
-            System.out.println("Try again");
+            messageBox("Error occured! Please try again.");
         }
     }
     
@@ -157,8 +153,7 @@ public class Functions {
             messageBox("Payment details updated!");
         }
         catch (IOException e){
-//            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
-            System.out.println("Try again");
+            messageBox("Error occured! Please try again.");
         }
     }
     
@@ -172,8 +167,7 @@ public class Functions {
             messageBox("Car details updated!");
         }
         catch (IOException e){
-//            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
-            System.out.println("Try again");
+            messageBox("Error occured! Please try again.");
         }
     }
     
@@ -181,14 +175,13 @@ public class Functions {
         try {
             PrintWriter adminDetails = new PrintWriter(new FileWriter("admin.txt", false));
             for(User a : templist){
-                adminDetails.write(a.toString() + System.lineSeparator());
+                adminDetails.write(a.toStaffLevel() + System.lineSeparator());
             }
             adminDetails.close(); 
             messageBox("Admin details updated!");
         }
         catch (IOException e){
-//            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
-            System.out.println("Try again");
+            messageBox("Error occured! Please try again.");
         }
     }
     
@@ -201,8 +194,7 @@ public class Functions {
             messageBox("Booking added!");
         }
         catch (IOException e){
-//            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
-            System.out.println("Try again");
+            messageBox("Error occured! Please try again.");
         }
     }
     
@@ -214,8 +206,7 @@ public class Functions {
             messageBox("Registration successful!");
         }
         catch (IOException e){
-//            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
-            System.out.println("Try again");
+            messageBox("Error occured! Please try again.");
         }
     }
     
@@ -227,8 +218,7 @@ public class Functions {
             messageBox("Payment details updated!");
         }
         catch (IOException e){
-//            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
-            System.out.println("Try again");
+            messageBox("Error occured! Please try again.");
         }
     }
     
@@ -240,21 +230,19 @@ public class Functions {
             messageBox("Car added!");
         }
         catch (IOException e){
-//            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
-            System.out.println("Try again");
+            messageBox("Error occured! Please try again.");
         }
     }
     
     public static void addAdmin(User details) throws IOException {
         try {
             PrintWriter adminDetails = new PrintWriter(new FileWriter("admin.txt", true));
-            adminDetails.write(details.toString() + System.lineSeparator());
+            adminDetails.write(details.toStaffLevel() + System.lineSeparator());
             adminDetails.close();         
             messageBox("Admin added!");
         }
         catch (IOException e){
-//            Logger.getLogger(SearchBookings.class.getName()).log(Level.SEVERE, null, e);
-            System.out.println("Try again");
+            messageBox("Error occured! Please try again.");
         }
     }
     

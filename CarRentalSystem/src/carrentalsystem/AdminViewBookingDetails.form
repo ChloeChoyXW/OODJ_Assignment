@@ -4,6 +4,34 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
+    <Menu class="javax.swing.JMenuBar" name="MenuBar">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="viewBookingMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="View Bookings"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="viewBookingMenuMouseClicked"/>
+          </Events>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="viewCarMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="View Cars"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="viewCarMenuMouseClicked"/>
+          </Events>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="viewCustomerMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="View Customers"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="viewCustomerMenuMouseClicked"/>
+          </Events>
+        </Menu>
+      </SubComponents>
+    </Menu>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -19,6 +47,7 @@
     </Property>
   </Properties>
   <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="MenuBar"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -78,10 +107,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="searchButton" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="1015" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="1015" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -106,7 +132,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="218" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -123,7 +149,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="customerDetailsPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -141,16 +167,19 @@
     <Component class="javax.swing.JComboBox" name="selectedSearch">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="9">
+          <StringArray count="12">
             <StringItem index="0" value="Booking ID"/>
             <StringItem index="1" value="Customer IC"/>
             <StringItem index="2" value="Car ID"/>
             <StringItem index="3" value="Car Brand"/>
-            <StringItem index="4" value="Booking Status"/>
-            <StringItem index="5" value="Payment Status"/>
-            <StringItem index="6" value="Start Rent Date (yyyy/mm/dd)"/>
-            <StringItem index="7" value="End Rent Date (yyyy/mm/dd)"/>
-            <StringItem index="8" value="Unconfirmed"/>
+            <StringItem index="4" value="Start Rent Date (yyyy/mm/dd)"/>
+            <StringItem index="5" value="End Rent Date (yyyy/mm/dd)"/>
+            <StringItem index="6" value="Paid Booking"/>
+            <StringItem index="7" value="Unpaid Booking"/>
+            <StringItem index="8" value="Unconfirmed Booking"/>
+            <StringItem index="9" value="Confirmed Booking"/>
+            <StringItem index="10" value="Returned Booking"/>
+            <StringItem index="11" value="Declined Booking"/>
           </StringArray>
         </Property>
       </Properties>

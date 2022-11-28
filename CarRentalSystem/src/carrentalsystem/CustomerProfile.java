@@ -5,7 +5,6 @@
 package carrentalsystem;
 
 import static carrentalsystem.Functions.*;
-import static carrentalsystem.LoginDialog.uid;
 import java.awt.Color;
 import java.io.IOException;
 import java.time.YearMonth;
@@ -21,23 +20,22 @@ import java.util.regex.Pattern;
  * @author USER
  */
 public class CustomerProfile extends javax.swing.JFrame {
+    private String uid;
     /**
      * Creates new form NewUserRegister
      */
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
     
-    public CustomerProfile(){
-        initComponents();        
-    }
-    
+   
     public CustomerProfile(String userID) {
-        initComponents();      
+        initComponents();  
+        this.uid = userID;
         ArrayList<Member> memberList = readTextFile("member");
         ArrayList<MemberPayment> paymentList = readTextFile("payment");
         DateTimeFormatter yearMonthFormatter = DateTimeFormatter.ofPattern("MM/yy");
        
         for(Member m : memberList){
-            if(m.getUid().equals(userID)){
+            if(m.getUid().equals(this.uid)){
                 nameInput.setText(m.getName());
                 emailInput.setText(m.getEmail());
                 pwInput.setText(m.getPw());
@@ -94,6 +92,11 @@ public class CustomerProfile extends javax.swing.JFrame {
         cvvInput = new javax.swing.JPasswordField();
         cancelUpdatePayment = new javax.swing.JButton();
         paymentButton = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        profileMenu = new javax.swing.JMenu();
+        viewBookingMenu = new javax.swing.JMenu();
+        addBookingMenu = new javax.swing.JMenu();
+        logoutMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -320,32 +323,62 @@ public class CustomerProfile extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
+        profileMenu.setText("Profile");
+        profileMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileMenuMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(profileMenu);
+
+        viewBookingMenu.setText("View Bookings");
+        viewBookingMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewBookingMenuMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(viewBookingMenu);
+
+        addBookingMenu.setText("Make Bookings");
+        addBookingMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addBookingMenuMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(addBookingMenu);
+
+        logoutMenu.setText("Logout");
+        logoutMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMenuMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(logoutMenu);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(89, 89, 89)
+                .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(paymentDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(registerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(160, 160, 160))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(customerDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(157, 157, 157))))
+                    .addComponent(paymentDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(registerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(76, 76, 76))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(34, 34, 34)
                 .addComponent(registerLabel)
                 .addGap(18, 18, 18)
                 .addComponent(customerDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(paymentDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addGap(73, 73, 73))
         );
 
         pack();
@@ -420,13 +453,33 @@ public class CustomerProfile extends javax.swing.JFrame {
         cancelUpdateUser.setVisible(false);
         userDetailsButton.setText("Edit");
     }//GEN-LAST:event_cancelUpdateUserActionPerformed
+
+    private void addBookingMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBookingMenuMouseClicked
+        CustomerAddBooking.customerAddBooking(this.uid);
+        this.dispose();
+    }//GEN-LAST:event_addBookingMenuMouseClicked
+
+    private void viewBookingMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewBookingMenuMouseClicked
+        CustomerViewBooking.customerViewBooking(this.uid);
+        this.dispose();
+    }//GEN-LAST:event_viewBookingMenuMouseClicked
+
+    private void profileMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMenuMouseClicked
+        CustomerProfile.customerProfile(uid);
+        this.dispose();
+    }//GEN-LAST:event_profileMenuMouseClicked
+
+    private void logoutMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMenuMouseClicked
+        CustomerAddBooking.main(null);
+        this.dispose();
+    }//GEN-LAST:event_logoutMenuMouseClicked
     
     private boolean updateUserDetails(){
         ArrayList<Member> memberList = readTextFile("member");
         ArrayList<Member> updatedMemberList = new ArrayList<>();
 
         boolean pwValid;
-        String userID = uid.getUid();
+        String userID = this.uid;
         String name = nameInput.getText();
         String email = emailInput.getText();
         String pw= pwInput.getText();
@@ -467,7 +520,7 @@ public class CustomerProfile extends javax.swing.JFrame {
         ArrayList<MemberPayment> paymentList = readTextFile("payment");
         ArrayList<MemberPayment> updatedPaymentList = new ArrayList<>();
         
-        String userID = uid.getUid();
+        String userID = this.uid;
         String cardNo = cardNoInput.getText();
         String cvvString = cvvInput.getText();
         String cardExpiry = cardExpiryInput.getText(); 
@@ -510,7 +563,7 @@ public class CustomerProfile extends javax.swing.JFrame {
      private void showUserDetails(){
         ArrayList<Member> memberList = new ArrayList<>();
         for(Member m : memberList){
-            if(m.getUid().equals(uid.getUid())){
+            if(m.getUid().equals(this.uid)){
                 nameInput.setText(m.getName());
                 emailInput.setText(m.getEmail());
                 pwInput.setText(m.getPw());
@@ -524,7 +577,7 @@ public class CustomerProfile extends javax.swing.JFrame {
     private void showPaymentDetails(){
         ArrayList<MemberPayment> paymentList = new ArrayList<>();
         for(MemberPayment p : paymentList){
-            if(p.getUid().equals(uid.getUid())){
+            if(p.getUid().equals(this.uid)){
                 cardNoInput.setText(p.getCardNo());
                 cvvInput.setText(String.valueOf(p.getCvv()));
                 cardExpiryInput.setText(p.getExpiryDate().format(formatter));
@@ -561,7 +614,7 @@ public class CustomerProfile extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 //    main(String[] args)
-    public static void customerProfile(){
+    public static void customerProfile(String uid){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -589,7 +642,7 @@ public class CustomerProfile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerProfile(uid.getUid()).setVisible(true);
+                new CustomerProfile(uid).setVisible(true);
                 
             }
         });
@@ -597,6 +650,7 @@ public class CustomerProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu addBookingMenu;
     private javax.swing.JTextArea addressInput;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JButton cancelUpdatePayment;
@@ -612,13 +666,16 @@ public class CustomerProfile extends javax.swing.JFrame {
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField icNoInput;
     private javax.swing.JLabel icNoLabel;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenu logoutMenu;
     private javax.swing.JTextField nameInput;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JButton paymentButton;
     private javax.swing.JPanel paymentDetailsPanel;
     private javax.swing.JTextField phoneInput;
     private javax.swing.JLabel phoneLabel;
+    private javax.swing.JMenu profileMenu;
     private javax.swing.JLabel pwErrorMessage;
     private javax.swing.JPasswordField pwInput;
     private javax.swing.JLabel pwLabel;
@@ -626,5 +683,6 @@ public class CustomerProfile extends javax.swing.JFrame {
     private javax.swing.JLabel reenterPwLabel;
     private javax.swing.JLabel registerLabel;
     private javax.swing.JButton userDetailsButton;
+    private javax.swing.JMenu viewBookingMenu;
     // End of variables declaration//GEN-END:variables
 }

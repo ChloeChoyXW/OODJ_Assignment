@@ -18,8 +18,8 @@ import javax.swing.JLabel;
  * @author USER
  */
 public class LoginDialog extends javax.swing.JDialog {
-    static Member uid = new Member();
-    static String userType;
+    private String uid;
+    private String userType;
 
     /**
      * Creates new form LoginDialog
@@ -239,16 +239,16 @@ public class LoginDialog extends javax.swing.JDialog {
         
         for(Member m : memberList){
             if(userEmail.equals(m.getEmail()) && userPW.equals(m.getPw())){
-                uid.setUid(m.getUid()); 
-                userType = "member";
+                this.uid = m.getUid(); 
+                this.userType = "member";
                 loginSuccess = true;
             }
         }
         
         for(User u : adminList){
             if(userEmail.equals(u.getEmail()) && userPW.equals(u.getPw())){
-                uid.setUid(u.getUid());
-                userType = "admin";
+                this.uid = u.getUid();
+                this.userType = u.getuserType();
                 loginSuccess = true;
             }
         } 
@@ -257,10 +257,19 @@ public class LoginDialog extends javax.swing.JDialog {
         if(!loginSuccess){
             messageBox("Login details does not match! Please try again!");
         }else{
-            CustomerProfile.customerProfile();
-            this.dispose();
+            if(this.userType.equals("member")){
+                CustomerAddBooking.customerAddBooking(this.uid);
+                this.dispose();
+            }else{
+                AdminViewBookingDetails.adminViewBooking(this.uid, this.userType);
+                this.dispose();
+            }
+            
+            
         }
     }
+
+
     public static void login() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -288,11 +297,12 @@ public class LoginDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                LoginDialog dialog = new LoginDialog(new javax.swing.JFrame(), true);                
+                LoginDialog dialog = new LoginDialog(new javax.swing.JFrame(), true);
+               
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
+                        CustomerAddBooking.main(null);
                     }
                 });
                 dialog.setVisible(true);

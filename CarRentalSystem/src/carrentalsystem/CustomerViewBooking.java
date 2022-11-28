@@ -20,12 +20,16 @@ import javax.swing.table.DefaultTableModel;
  * @author USER
  */
 public class CustomerViewBooking extends javax.swing.JFrame {
-
+    private String uid;
     /**
      * Creates new form NewJFrame
      */
-    public CustomerViewBooking() {
+    public CustomerViewBooking(String uid) {
         initComponents();
+        this.uid = uid;
+
+        ArrayList<Booking> bookingList = showBookingInfo("","");
+        DisplayBookings(bookingList);
     }
 
     /**
@@ -71,6 +75,11 @@ public class CustomerViewBooking extends javax.swing.JFrame {
         paymentStatusLabel = new javax.swing.JLabel();
         paymentStatusDisplay = new javax.swing.JTextField();
         makePaymentButton = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        profileMenu = new javax.swing.JMenu();
+        viewBookingMenu = new javax.swing.JMenu();
+        addBookingMenu = new javax.swing.JMenu();
+        logoutMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(811, 629));
@@ -293,6 +302,40 @@ public class CustomerViewBooking extends javax.swing.JFrame {
         makePaymentButton.setText("Make Payment");
         makePaymentButton.setVisible(false);
 
+        profileMenu.setText("Profile");
+        profileMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileMenuMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(profileMenu);
+
+        viewBookingMenu.setText("View Bookings");
+        viewBookingMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewBookingMenuMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(viewBookingMenu);
+
+        addBookingMenu.setText("Add Bookings");
+        addBookingMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addBookingMenuMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(addBookingMenu);
+
+        logoutMenu.setText("Logout");
+        logoutMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMenuMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(logoutMenu);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -331,7 +374,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(21, 21, 21)
                 .addComponent(carInfoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -344,7 +387,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addGap(18, 18, 18)
                         .addComponent(bookingDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(carDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -353,7 +396,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
                         .addComponent(cancelBookingButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(makePaymentButton)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         bookingDetailsPanel.getAccessibleContext().setAccessibleName("");
@@ -411,6 +454,26 @@ public class CustomerViewBooking extends javax.swing.JFrame {
             Logger.getLogger(CustomerViewBooking.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cancelBookingButtonActionPerformed
+
+    private void viewBookingMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewBookingMenuMouseClicked
+        CustomerViewBooking.customerViewBooking(this.uid);
+        this.dispose();
+    }//GEN-LAST:event_viewBookingMenuMouseClicked
+
+    private void addBookingMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBookingMenuMouseClicked
+        CustomerAddBooking.customerAddBooking(this.uid);
+        this.dispose();
+    }//GEN-LAST:event_addBookingMenuMouseClicked
+
+    private void profileMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMenuMouseClicked
+        CustomerProfile.customerProfile(uid);
+        this.dispose();
+    }//GEN-LAST:event_profileMenuMouseClicked
+
+    private void logoutMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMenuMouseClicked
+        CustomerAddBooking.main(null);
+        this.dispose();
+    }//GEN-LAST:event_logoutMenuMouseClicked
     
     //show booking details after clicked from table
     private void setBookingDetails(int row){
@@ -430,6 +493,10 @@ public class CustomerViewBooking extends javax.swing.JFrame {
                 endRentDisplay.setText(b.getEndDate().format(formatter));
                 paymentAmountDisplay.setText(String.valueOf(b.getPaymentAmount()));
                 paymentStatusDisplay.setText(b.getPaymentStatus());
+                
+                if(b.getPaymentStatus().equalsIgnoreCase("Unpaid")){
+                    makePaymentButton.setVisible(true);
+                }
             }
         }
         
@@ -454,9 +521,17 @@ public class CustomerViewBooking extends javax.swing.JFrame {
 
         try {
             switch (input) {
+                case "":
+                    for(Booking b: bookingList){
+                        if(this.uid.equals(b.getMember().getUid())){
+                            bookingDetails.add(b);
+                        }
+                    }
+                    return bookingDetails;
+                    
                 case "Booking ID":
                     for(Booking b : bookingList) {
-                        if (searchText.equalsIgnoreCase(b.getBookingID())) {
+                        if (searchText.equalsIgnoreCase(b.getBookingID()) && this.uid.equals(b.getMember().getUid())) {
                             bookingDetails.add(b);
                         }
                     }
@@ -469,7 +544,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
                     LocalDateTime startRentDateRange = startRentDate.plusDays(1);
 
                     for (Booking b : bookingList) {
-                        if  (b.getStartDate().isAfter(startRentDate) && b.getStartDate().isBefore(startRentDateRange)) {
+                        if  (b.getStartDate().isAfter(startRentDate) && b.getStartDate().isBefore(startRentDateRange) && this.uid.equals(b.getMember().getUid())) {
                             bookingDetails.add(b);
                         }
                     }
@@ -481,7 +556,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
                     LocalDateTime endRentDateRange = endRentDate.plusDays(1);
 
                     for (Booking b : bookingList) {
-                        if  (b.getEndDate().isAfter(endRentDate) && b.getEndDate().isBefore(endRentDateRange)) {
+                        if  (b.getEndDate().isAfter(endRentDate) && b.getEndDate().isBefore(endRentDateRange) && this.uid.equals(b.getMember().getUid())) {
                             bookingDetails.add(b);
                         }
                     }
@@ -489,7 +564,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
 
                 case "Confirmed Bookings":
                     for (Booking b : bookingList) {
-                        if (b.getBookingStatus().equalsIgnoreCase("Confirmed")) {
+                        if (b.getBookingStatus().equalsIgnoreCase("Confirmed") && this.uid.equals(b.getMember().getUid())) {
                             bookingDetails.add(b);
                         }
                     }
@@ -497,7 +572,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
                     
                 case "Declined Bookings":
                     for (Booking b : bookingList) {
-                        if (b.getBookingStatus().equalsIgnoreCase("Declined")) {
+                        if (b.getBookingStatus().equalsIgnoreCase("Declined") && this.uid.equals(b.getMember().getUid())) {
                             bookingDetails.add(b);
                         }
                     }
@@ -505,7 +580,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
                     
                 case "Unconfirmed Bookings":
                     for (Booking b : bookingList) {
-                        if (b.getBookingStatus().equalsIgnoreCase("Unconfirmed")) {
+                        if (b.getBookingStatus().equalsIgnoreCase("Unconfirmed") && this.uid.equals(b.getMember().getUid())) {
                             bookingDetails.add(b);
                         }
                     }
@@ -513,7 +588,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
                     
                 case "Paid Bookings":
                     for (Booking b : bookingList) {
-                        if (b.getPaymentStatus().equalsIgnoreCase("Paid")) {
+                        if (b.getPaymentStatus().equalsIgnoreCase("Paid") && this.uid.equals(b.getMember().getUid())) {
                             bookingDetails.add(b);
                         }
                     }
@@ -521,7 +596,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
                     
                 case "Unpaid Bookings":
                     for (Booking b : bookingList) {
-                        if (b.getPaymentStatus().equalsIgnoreCase("Unpaid")) {
+                        if (b.getPaymentStatus().equalsIgnoreCase("Unpaid") && this.uid.equals(b.getMember().getUid())) {
                             bookingDetails.add(b);
                         }
                     }
@@ -536,7 +611,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
         }
         return null;
     }
-    
+    // show data in table
     private void DisplayBookings(ArrayList<Booking> bookingList) { 
         ArrayList<Car> carList = readTextFile("car");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
@@ -570,6 +645,8 @@ public class CustomerViewBooking extends javax.swing.JFrame {
                     Object[] data = {bookID, carBrand, carType, carPlate, startRent, endRent, bookingStatus, payAmount, paymentStatus};
                     tableModel.addRow(data);
                 }
+                
+                
             }
             else{
                 String[] noRecord = {"No records."};
@@ -585,7 +662,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void customerViewBooking(String uid) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -615,7 +692,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerViewBooking().setVisible(true);
+                new CustomerViewBooking(uid).setVisible(true);
                 
             }
             
@@ -624,6 +701,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu addBookingMenu;
     private javax.swing.JPanel bookingDetailsPanel;
     private javax.swing.JTextField bookingIDDisplay;
     private javax.swing.JLabel bookingIDLabel;
@@ -644,13 +722,16 @@ public class CustomerViewBooking extends javax.swing.JFrame {
     private javax.swing.JTable displayBookingInfo;
     private javax.swing.JTextField endRentDisplay;
     private javax.swing.JLabel endRentLabel;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JMenu logoutMenu;
     private javax.swing.JButton makePaymentButton;
     private javax.swing.JTextField paymentAmountDisplay;
     private javax.swing.JLabel paymentAmountLabel;
     private javax.swing.JTextField paymentStatusDisplay;
     private javax.swing.JLabel paymentStatusLabel;
+    private javax.swing.JMenu profileMenu;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchInput;
     private javax.swing.JTextField seatNoDisplay;
@@ -658,5 +739,6 @@ public class CustomerViewBooking extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> selectedSearch;
     private javax.swing.JTextField startRentDisplay;
     private javax.swing.JLabel startRentLabel;
+    private javax.swing.JMenu viewBookingMenu;
     // End of variables declaration//GEN-END:variables
 }

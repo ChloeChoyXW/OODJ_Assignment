@@ -5,11 +5,14 @@
 package carrentalsystem;
 
 import static carrentalsystem.Functions.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenu;
 import javax.swing.JRadioButton;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,13 +21,69 @@ import javax.swing.table.DefaultTableModel;
  * @author USER
  */
 public class AdminViewCarDetails extends javax.swing.JFrame {
-
+    private String aid;
+    private String userType;
     /**
      * Creates new form NewJFrame
      */
-    public AdminViewCarDetails() {
+    public AdminViewCarDetails(String aid, String userType) {
         initComponents();
+        this.aid = aid;
+        this.userType = userType;
+        JMenu logout = new JMenu("Logout");
+        if(!this.userType.equalsIgnoreCase("manager")){
+            MenuBar.add(logout);
+        }else{
+            JMenu viewStaff = new JMenu("View Staffs");
+            JMenu report = new JMenu("Reports");
+            MenuBar.add(viewStaff);
+            MenuBar.add(report);
+            MenuBar.add(logout);
+            
+            viewStaff.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        viewStaff();
+                        
+                        
+                    }
+                });
+            
+            report.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        viewReport();
+                        
+                        
+                    }
+                });
+            
+            logout.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        logout();
+                        
+                        
+                    }
+                });
+        }
     }
+    
+    private void viewStaff(){
+        AdminViewStaff.adminViewStaffs(this.aid, this.userType);
+        this.dispose();
+    }
+    
+    private void viewReport(){
+        BusinessReport.businessReport(this.aid, this.userType);
+        this.dispose();
+    }
+    
+    private void logout(){
+        CustomerAddBooking.main(null);
+        this.dispose();
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,6 +120,10 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
         pricePerHourInput = new javax.swing.JTextField();
         seatNumberInput = new javax.swing.JTextField();
         carPlateLabel = new javax.swing.JLabel();
+        MenuBar = new javax.swing.JMenuBar();
+        viewBookingMenu = new javax.swing.JMenu();
+        viewCarMenu = new javax.swing.JMenu();
+        viewCustomerMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(811, 629));
@@ -204,10 +267,40 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        viewBookingMenu.setText("View Bookings");
+        viewBookingMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewBookingMenuMouseClicked(evt);
+            }
+        });
+        MenuBar.add(viewBookingMenu);
+
+        viewCarMenu.setText("View Cars");
+        viewCarMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewCarMenuMouseClicked(evt);
+            }
+        });
+        MenuBar.add(viewCarMenu);
+
+        viewCustomerMenu.setText("View Customers");
+        viewCustomerMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewCustomerMenuMouseClicked(evt);
+            }
+        });
+        MenuBar.add(viewCustomerMenu);
+
+        setJMenuBar(MenuBar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(updateButton)
+                .addGap(389, 389, 389))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -219,8 +312,7 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
                                 .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(searchButton))
-                            .addComponent(carInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 967, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(carInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,17 +320,17 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
                             .addComponent(editAddCarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1006, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1036, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(updateButton)
-                .addGap(389, 389, 389))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 995, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(36, 36, 36)
                 .addComponent(carInfoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -255,7 +347,7 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(updateButton)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -297,6 +389,21 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
         unavailableButton.setSelected(false);
         
     }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void viewBookingMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewBookingMenuMouseClicked
+        AdminViewBookingDetails.adminViewBooking(this.aid, this.userType);
+        this.dispose();
+    }//GEN-LAST:event_viewBookingMenuMouseClicked
+
+    private void viewCarMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewCarMenuMouseClicked
+        AdminViewCarDetails.adminViewCarDetails(this.aid, this.userType);
+        this.dispose();
+    }//GEN-LAST:event_viewCarMenuMouseClicked
+
+    private void viewCustomerMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewCustomerMenuMouseClicked
+        AdminViewUser.adminViewUser(this.aid, this.userType);
+        this.dispose();
+    }//GEN-LAST:event_viewCustomerMenuMouseClicked
     
     //show car details after clicked from table
     private void setCarDetails(int row){
@@ -523,7 +630,7 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void adminViewCarDetails(String aid, String userType) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -557,12 +664,13 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminViewCarDetails().setVisible(true);
+                new AdminViewCarDetails(aid, userType).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar MenuBar;
     private javax.swing.JLabel availabilityLabel;
     private javax.swing.JRadioButton availableButton;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -589,5 +697,8 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> selectedSearch;
     private javax.swing.JRadioButton unavailableButton;
     private javax.swing.JButton updateButton;
+    private javax.swing.JMenu viewBookingMenu;
+    private javax.swing.JMenu viewCarMenu;
+    private javax.swing.JMenu viewCustomerMenu;
     // End of variables declaration//GEN-END:variables
 }
