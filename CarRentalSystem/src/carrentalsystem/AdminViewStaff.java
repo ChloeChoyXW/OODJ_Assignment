@@ -35,6 +35,12 @@ public class AdminViewStaff extends javax.swing.JFrame {
         JMenu logout = new JMenu("Logout");
         if(!this.userType.equalsIgnoreCase("manager")){
             MenuBar.add(logout);
+            logout.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        logout(); 
+                    }
+                });
         }else{
             JMenu viewStaff = new JMenu("View Staffs");
             JMenu report = new JMenu("Reports");
@@ -46,17 +52,13 @@ public class AdminViewStaff extends javax.swing.JFrame {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         viewStaff();
-                        
-                        
                     }
                 });
             
             report.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        viewReport();
-                        
-                        
+                        viewReport(); 
                     }
                 });
             
@@ -64,8 +66,6 @@ public class AdminViewStaff extends javax.swing.JFrame {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         logout();
-                        
-                        
                     }
                 });
         }

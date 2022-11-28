@@ -336,6 +336,8 @@ public class NewUserRegister extends javax.swing.JFrame {
 
                 registerMember(new Member(newUID, name, pw, email, icNo, phoneNo, address));
                 addPaymentDetails(new MemberPayment(newUID, cardNo, cvvNo, expiryDate));
+                CustomerAddBooking.main(null);
+                this.dispose();
             } catch (Exception ex) {
                 messageBox("Error occured! Please ensure all inputs are correct!");
                 Logger.getLogger(NewUserRegister.class.getName()).log(Level.SEVERE, null, ex);
@@ -345,6 +347,7 @@ public class NewUserRegister extends javax.swing.JFrame {
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         CustomerAddBooking.main(null);
+        this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
     
     private boolean passwordValidation(String password, String reenteredPw){

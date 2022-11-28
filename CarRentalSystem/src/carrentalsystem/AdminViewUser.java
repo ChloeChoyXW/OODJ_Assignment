@@ -33,6 +33,12 @@ public class AdminViewUser extends javax.swing.JFrame {
         JMenu logout = new JMenu("Logout");
         if(!this.userType.equalsIgnoreCase("manager")){
             MenuBar.add(logout);
+            logout.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        logout(); 
+                    }
+                });
         }else{
             JMenu viewStaff = new JMenu("View Staffs");
             JMenu report = new JMenu("Reports");
@@ -351,10 +357,16 @@ public class AdminViewUser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        String filter = searchFilter.getSelectedItem().toString();
-        String input = searchInput.getText();
-        Member memberDetails = showCustomerInfo(filter, input);
-        displayUserDetails(memberDetails);
+        try{
+            String filter = searchFilter.getSelectedItem().toString();
+            String input = searchInput.getText();
+            Member memberDetails = showCustomerInfo(filter, input);
+            displayUserDetails(memberDetails);
+            searchInput.setText("");
+        }catch(NullPointerException e){
+            messageBox("Details not found! Please re-check input.");
+        }
+        
         
     }//GEN-LAST:event_searchButtonActionPerformed
 
@@ -381,6 +393,15 @@ public class AdminViewUser extends javax.swing.JFrame {
         try {
             updateMemberDetails(updatedMemberList);
             updatePaymentDetails(updatedPaymentList);
+            
+            uidDisplay.setText("");
+            nameDisplay.setText("");
+            icDisplay.setText("");
+            emailDisplay.setText("");
+            phoneDisplay.setText("");
+            addressDisplay.setText("");
+            cardNoDisplay.setText("");
+            expiryDisplay.setText("");
         } catch (IOException ex) {
             messageBox("Error occured! Please try again.");
             Logger.getLogger(AdminViewUser.class.getName()).log(Level.SEVERE, null, ex);
