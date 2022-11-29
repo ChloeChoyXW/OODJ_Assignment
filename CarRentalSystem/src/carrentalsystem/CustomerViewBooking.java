@@ -407,11 +407,16 @@ public class CustomerViewBooking extends javax.swing.JFrame {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         String input = selectedSearch.getSelectedItem().toString();
         String searchText = searchInput.getText();
-        ArrayList<Booking> bookingDetails = showBookingInfo(input, searchText);
-        DisplayBookings(bookingDetails); 
-        if(input.equalsIgnoreCase("Unpaid Bookings")){
-            makePaymentButton.setVisible(true);
+        try{
+            ArrayList<Booking> bookingDetails = showBookingInfo(input, searchText);
+            DisplayBookings(bookingDetails); 
+            if(input.equalsIgnoreCase("Unpaid Bookings")){
+                makePaymentButton.setVisible(true);
+            }
+        }catch(Exception  e){
+            messageBox("Error occured! Please check input.");
         }
+        
         searchInput.setText(null);
         
         carIDDisplay.setText(null);
