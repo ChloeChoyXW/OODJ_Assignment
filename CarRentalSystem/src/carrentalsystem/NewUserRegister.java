@@ -6,14 +6,12 @@ package carrentalsystem;
 
 import static carrentalsystem.Functions.*;
 import java.awt.Color;
-import java.io.IOException;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.JFrame;
 
 /**
  *
@@ -281,6 +279,7 @@ public class NewUserRegister extends javax.swing.JFrame {
         String newID = null;
         boolean pwValid = false;
         
+        //get all details entered
         String name = nameInput.getText();
         String email = emailInput.getText();
         String pw= pwInput.getText();
@@ -296,7 +295,7 @@ public class NewUserRegister extends javax.swing.JFrame {
         YearMonth expiryDate = stringToDate(cardExpiry);
         YearMonth yearMonthNow = YearMonth.now();
 
-        
+        //check if all valid details are entered
         if(name.isBlank()||email.isBlank()||pw.isBlank()||phoneNo.isBlank()||icNo.isBlank()||address.isBlank()||cardNo.isBlank()||cvvString.isBlank()||cardExpiry.isBlank()){
             messageBox("Please enter all details!");
         }else if(expiryDate.isBefore(yearMonthNow)){
@@ -307,7 +306,7 @@ public class NewUserRegister extends javax.swing.JFrame {
         if(pwValid){
             try {
                 int cvvNo = Integer.parseInt(cvvString);
-                
+                //create new user id                
                 // get memebr ID of last index
                 if(!memberList.isEmpty()) {
                    lastIndex = memberList.size() - 1;
@@ -333,7 +332,7 @@ public class NewUserRegister extends javax.swing.JFrame {
                 }
 
                 String newUID = "UID" + newID + String.valueOf(newIDNumber);
-
+                //add user and payment details
                 registerMember(new Member(newUID, name, pw, email, icNo, phoneNo, address));
                 addPaymentDetails(new MemberPayment(newUID, cardNo, cvvNo, expiryDate));
                 CustomerAddBooking.main(null);
@@ -350,6 +349,7 @@ public class NewUserRegister extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
     
+    //validate pw
     private boolean passwordValidation(String password, String reenteredPw){
         String pwPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,}$";
         Pattern pattern = Pattern.compile(pwPattern);

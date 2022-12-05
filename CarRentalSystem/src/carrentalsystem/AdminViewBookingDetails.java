@@ -5,17 +5,24 @@
 package carrentalsystem;
 
 import static carrentalsystem.Functions.*;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
-import javax.swing.JRadioButton;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,6 +35,8 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    
+    
     public AdminViewBookingDetails(String aid, String userType) {
         initComponents();
         this.aid = aid;
@@ -142,13 +151,14 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
         declineBookingButton = new javax.swing.JButton();
         confirmBookingButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        returnButton = new javax.swing.JButton();
+        generateReportButton = new javax.swing.JButton();
         MenuBar = new javax.swing.JMenuBar();
         viewBookingMenu = new javax.swing.JMenu();
         viewCarMenu = new javax.swing.JMenu();
         viewCustomerMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(2147483647, 1400));
         setMinimumSize(new java.awt.Dimension(811, 629));
         setResizable(false);
         setSize(new java.awt.Dimension(1112, 670));
@@ -463,6 +473,20 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
             .addGap(0, 25, Short.MAX_VALUE)
         );
 
+        returnButton.setText("Returned");
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnButtonActionPerformed(evt);
+            }
+        });
+
+        generateReportButton.setText("Generate Report");
+        generateReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateReportButtonActionPerformed(evt);
+            }
+        });
+
         viewBookingMenu.setText("View Bookings");
         viewBookingMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -513,19 +537,24 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(carDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(returnButton)
+                                                .addGap(18, 18, 18)
                                                 .addComponent(deleteBookingButton)
                                                 .addGap(12, 12, 12))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(51, 51, 51)
                                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(carInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(selectedSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(searchButton))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(selectedSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(searchButton)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(generateReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1053, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -540,7 +569,8 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selectedSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchButton))
+                    .addComponent(searchButton)
+                    .addComponent(generateReportButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -551,7 +581,8 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(deleteBookingButton)
                             .addComponent(declineBookingButton)
-                            .addComponent(confirmBookingButton))
+                            .addComponent(confirmBookingButton)
+                            .addComponent(returnButton))
                         .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(carDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -580,7 +611,6 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
             declineBookingButton.setVisible(true);
             deleteBookingButton.setVisible(false);
         }
-        searchInput.setText(null);
         
         carIDDisplay.setText(null);
         carBrandDisplay.setText(null);
@@ -649,6 +679,7 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
         phoneNoDisplay.setText(null);
     }//GEN-LAST:event_deleteBookingButtonActionPerformed
 
+    //confirm uncomfirmed bookings
     private void confirmBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBookingButtonActionPerformed
         ArrayList<Booking> bookingList = readTextFile("booking");
         ArrayList<Booking> updatedBookingList = new ArrayList<>();
@@ -692,7 +723,8 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
         emailDisplay.setText(null);
         phoneNoDisplay.setText(null);
     }//GEN-LAST:event_confirmBookingButtonActionPerformed
-
+    
+    //decline unconfirmed bookings
     private void declineBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineBookingButtonActionPerformed
         ArrayList<Booking> bookingList = readTextFile("booking");
         ArrayList<Booking> updatedBookingList = new ArrayList<>();
@@ -751,6 +783,180 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
         AdminViewUser.adminViewUser(this.aid, this.userType);
         this.dispose();
     }//GEN-LAST:event_viewCustomerMenuMouseClicked
+
+    //update bookings where car is returned
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
+        ArrayList<Booking> bookingList = readTextFile("booking");
+        ArrayList<Booking> updatedBookingList = new ArrayList<>();
+        
+        if(!bookingIDDisplay.getText().isEmpty()){
+            for(Booking b : bookingList){
+                if(b.getBookingID().equals(bookingIDDisplay.getText())){
+                    b.setBookingStatus("Returned");
+                    updatedBookingList.add(b);
+                }
+                else{
+                    updatedBookingList.add(b);
+                }
+            }
+            
+            try {
+                updateBookingDetails(updatedBookingList);
+                searchInput.setText(null);
+                carIDDisplay.setText(null);
+                carBrandDisplay.setText(null);
+                carTypeDisplay.setText(null);
+                carPlateDisplay.setText(null);
+                seatNoDisplay.setText(null);
+
+                bookingIDDisplay.setText(null);
+                bookingStatusDisplay.setText(null);
+                startRentDisplay.setText(null);
+                endRentDisplay.setText(null);
+                paymentAmountDisplay.setText(null);
+                paymentStatusDisplay.setText(null);
+
+                userIDDisplay.setText(null);
+                usernameDisplay.setText(null);
+                ICDisplay.setText(null);
+                emailDisplay.setText(null);
+                phoneNoDisplay.setText(null);
+            } catch (IOException ex) {
+                messageBox("Error occured! Please try again!");
+                Logger.getLogger(AdminViewBookingDetails.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }else{
+            messageBox("There is no details selected!");
+        }
+    }//GEN-LAST:event_returnButtonActionPerformed
+
+    //generate pdf file with data in table
+    private void generateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportButtonActionPerformed
+        String filePath = null;
+        LocalDateTime now = LocalDateTime.now();
+        String timeNow = String.valueOf(now.getYear())+"_" + String.valueOf(now.getMonthValue()) + "_" + String.valueOf(now.getDayOfMonth());
+        String filter = selectedSearch.getSelectedItem().toString();
+        String input = searchInput.getText().toUpperCase();
+        String text = null;
+        String tableData = "";
+        
+        //check if table has value
+        try{
+            tableData =  displayBookingInfo.getModel().getValueAt(0, 0).toString();
+        
+            if(displayBookingInfo.getRowCount()>0 && !tableData.equals("No records.")){
+                //create headings
+                switch(filter){
+
+                            case "Booking ID":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Customer IC":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Car ID":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Car Brand":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Start Rent Date (yyyy/mm/dd)":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "End Rent Date (yyyy/mm/dd)":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Paid Booking":
+                                 text = filter;
+                                 break;
+
+                            case "Unpaid Booking":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Unconfirmed Booking":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Confirmed Booking":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Returned Booking":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Declined Booking":
+                                 text = filter + ": " +input;
+                                 break;
+                         }
+                
+                //user enter file name and choose destination folder
+                String fileName = JOptionPane.showInputDialog("Enter File Name:");
+                if(fileName != null){
+                    JFileChooser chooseFile = new JFileChooser();
+                    chooseFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    int i = chooseFile.showSaveDialog(this);
+                    if(i==JFileChooser.APPROVE_OPTION){
+                        filePath = chooseFile.getSelectedFile().getPath();
+                        filePath = filePath + "\\booking_report_" + fileName + "_" + timeNow + ".pdf";
+
+                        try {
+                            PdfWriter writer = new PdfWriter(filePath);
+                             PdfDocument pdf = new PdfDocument(writer);
+                             pdf.addNewPage();
+                             Document doc = new Document(pdf);
+
+                             String header = "Booking Details\n" + text;
+                             doc.add(new Paragraph(header));
+
+
+                             float columnWidth[] = {10f, 20f, 20f, 10f,20f, 10f, 10f, 10f, 10f};
+                             Table table = new Table(columnWidth);
+                             table.addCell(new Cell().add(new Paragraph("BID")));
+                             table.addCell(new Cell().add(new Paragraph("UID")));
+                             table.addCell(new Cell().add(new Paragraph("Name")));
+                             table.addCell(new Cell().add(new Paragraph("Car ID")));
+                             table.addCell(new Cell().add(new Paragraph("Start Rent")));
+                             table.addCell(new Cell().add(new Paragraph("End Rent")));
+                             table.addCell(new Cell().add(new Paragraph("Status")));
+                             table.addCell(new Cell().add(new Paragraph("Amount")));
+                             table.addCell(new Cell().add(new Paragraph("Payment")));
+
+                             for(int row = 0; row < displayBookingInfo.getRowCount(); row++){
+                                 for(int column = 0; column < displayBookingInfo.getColumnCount(); column++){
+                                    String value = displayBookingInfo.getModel().getValueAt(row, column).toString();
+                                    table.addCell(new Cell().add(new Paragraph(value)));
+                                 }   
+                             }
+
+                             doc.add(table);
+                             doc.close();
+                             messageBox("Report Generated!");
+                        } catch (FileNotFoundException ex) {
+                            messageBox("File not Found! try again!");
+                            Logger.getLogger(BusinessReport.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+                else{
+                    messageBox("Please enter file name!");
+                }
+            }else{
+                messageBox("There is no data in table!");
+            }
+        }
+        catch(NullPointerException e){
+            messageBox("There is no data in table!");
+        }  
+    }//GEN-LAST:event_generateReportButtonActionPerformed
     
     //show booking details after clicked from table
     private void setBookingDetails(int row){
@@ -925,6 +1131,7 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
         return null;
     }
     
+    //show value in table
     private void DisplayBookingsTable(ArrayList<Booking> bookingList) { 
         ArrayList<Member> memberList = readTextFile("member");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
@@ -1037,6 +1244,7 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField endRentDisplay;
     private javax.swing.JLabel endRentLabel;
+    private javax.swing.JButton generateReportButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -1046,6 +1254,7 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
     private javax.swing.JLabel paymentStatusLabel;
     private javax.swing.JTextField phoneNoDisplay;
     private javax.swing.JLabel phoneNoLabel;
+    private javax.swing.JButton returnButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchInput;
     private javax.swing.JTextField seatNoDisplay;

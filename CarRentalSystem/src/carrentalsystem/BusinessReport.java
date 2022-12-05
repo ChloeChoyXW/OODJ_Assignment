@@ -6,8 +6,15 @@ package carrentalsystem;
 
 import static carrentalsystem.Functions.messageBox;
 import static carrentalsystem.Functions.readTextFile;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -16,11 +23,12 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,6 +42,8 @@ public class BusinessReport extends javax.swing.JFrame {
     private ArrayList<Booking> bookingList = readTextFile("booking");
     private String aid;
     private String userType;
+    private String reportMonth;
+    private String reportYear;
 
     /**
      * Creates new form BusinessReport
@@ -122,6 +132,7 @@ public class BusinessReport extends javax.swing.JFrame {
         monthRevenueDisplay = new javax.swing.JLabel();
         reportPane = new javax.swing.JScrollPane();
         reportTable = new javax.swing.JTable();
+        generatePDFButton = new javax.swing.JButton();
         MenuBar = new javax.swing.JMenuBar();
         viewBookingMenu = new javax.swing.JMenu();
         viewCarMenu = new javax.swing.JMenu();
@@ -180,6 +191,13 @@ public class BusinessReport extends javax.swing.JFrame {
         reportTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         reportPane.setViewportView(reportTable);
 
+        generatePDFButton.setText("Generate PDF");
+        generatePDFButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generatePDFButtonActionPerformed(evt);
+            }
+        });
+
         viewBookingMenu.setText("View Bookings");
         viewBookingMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -212,7 +230,11 @@ public class BusinessReport extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(83, 83, 83)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(businessReportLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(generatePDFButton))
                     .addComponent(reportPane, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(monthRevenueDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -221,8 +243,7 @@ public class BusinessReport extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(reportMonthYearLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(nextMonthButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(businessReportLabel))
+                        .addComponent(nextMonthButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(
@@ -234,7 +255,9 @@ public class BusinessReport extends javax.swing.JFrame {
                         .addComponent(nextMonthButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(businessReportLabel)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(businessReportLabel)
+                            .addComponent(generatePDFButton))
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(previousMonthButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,13 +271,14 @@ public class BusinessReport extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //navigate through months and years
     private void nextMonthButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextMonthButtonActionPerformed
         lastMonthReport = lastMonthReport.plusMonths(1);
         navigateReportYearMonthLabel();
         monthlySales();
     }//GEN-LAST:event_nextMonthButtonActionPerformed
 
+    //navigate through months and years
     private void previousMonthButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousMonthButtonActionPerformed
         lastMonthReport = lastMonthReport.minusMonths(1);
         navigateReportYearMonthLabel();
@@ -276,13 +300,72 @@ public class BusinessReport extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_viewCustomerMenuMouseClicked
 
+    //generate PDF report
+    private void generatePDFButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generatePDFButtonActionPerformed
+        String filePath = null;
+        LocalDateTime now = LocalDateTime.now();
+        String timeNow = String.valueOf(now.getYear())+"_" + String.valueOf(now.getMonthValue()) + "_" + String.valueOf(now.getDayOfMonth());
+        
+
+        JFileChooser chooseFile = new JFileChooser();
+        chooseFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int i = chooseFile.showSaveDialog(this);
+        if(i==JFileChooser.APPROVE_OPTION){
+            filePath = chooseFile.getSelectedFile().getPath();
+            filePath = filePath + "\\business_report_" + this.reportMonth.toLowerCase() + "_" + this.reportYear + ".pdf";
+
+            try {
+                PdfWriter writer = new PdfWriter(filePath);
+                 PdfDocument pdf = new PdfDocument(writer);
+                 pdf.addNewPage();
+                 Document doc = new Document(pdf);
+                 String header = "Business Report (" + reportMonthYearLabel.getText() + ")";
+                 doc.add(new Paragraph(header));
+
+
+                 float columnWidth[] = {10f, 20f, 20f, 10f,20f, 10f, 10f, 10f, 10f};
+                 Table table = new Table(columnWidth);
+                 table.addCell(new Cell().add(new Paragraph("Car ID")));
+                 table.addCell(new Cell().add(new Paragraph("Car Brand")));
+                 table.addCell(new Cell().add(new Paragraph("Car Type")));
+                 table.addCell(new Cell().add(new Paragraph("Seat Num")));
+                 table.addCell(new Cell().add(new Paragraph("Car Plate")));
+                 table.addCell(new Cell().add(new Paragraph("Price/hour")));
+                 table.addCell(new Cell().add(new Paragraph("Rental frequency")));
+                 table.addCell(new Cell().add(new Paragraph("Hours rented")));
+                 table.addCell(new Cell().add(new Paragraph("Revenue")));
+
+                 for(int row = 0; row < reportTable.getRowCount(); row++){
+                     for(int column = 0; column < reportTable.getColumnCount(); column++){
+                        String value = reportTable.getModel().getValueAt(row, column).toString();
+                        table.addCell(new Cell().add(new Paragraph(value)));
+                     }   
+                 }
+
+                 doc.add(table);
+                 doc.close();
+                 messageBox("Report Generated!");
+            } catch (FileNotFoundException ex) {
+                messageBox("File not Found! try again!");
+                Logger.getLogger(BusinessReport.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+        
+       
+        
+       
+    }//GEN-LAST:event_generatePDFButtonActionPerformed
+
+    //set month year label
     private void navigateReportYearMonthLabel(){
-        String reportMonth = String.valueOf(lastMonthReport.getMonth());
-        String reportYear = String.valueOf(lastMonthReport.getYear());
+        this.reportMonth = String.valueOf(lastMonthReport.getMonth());
+        this.reportYear = String.valueOf(lastMonthReport.getYear());
         reportMonthYearLabel.setText(reportMonth + " " + reportYear);
     }
     
-    
+    //find and calculate details needed in the report
     private void monthlySales(){
         ArrayList<Booking> bookingList = readTextFile("booking");
         ArrayList<Car> carList = readTextFile("car");
@@ -370,6 +453,7 @@ public class BusinessReport extends javax.swing.JFrame {
           
     }
     
+    //display all details in table
     private void displayReportTable(LinkedHashMap<String, Integer> monthlyCarList, LinkedHashMap<String, Long> carRentedHourList, LinkedHashMap<String, Double> carRevenueList) {      
         String carID = null;
         String brand = null;
@@ -465,9 +549,11 @@ public class BusinessReport extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JLabel businessReportLabel;
+    private javax.swing.JButton generatePDFButton;
     private javax.swing.JLabel monthRevenueDisplay;
     private javax.swing.JButton nextMonthButton;
     private javax.swing.JButton previousMonthButton;

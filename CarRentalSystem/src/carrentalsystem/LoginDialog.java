@@ -8,10 +8,12 @@ package carrentalsystem;
 import static carrentalsystem.Functions.messageBox;
 import static carrentalsystem.Functions.readTextFile;
 import java.awt.Color;
-import java.awt.Font;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
 
 /**
  *
@@ -20,6 +22,10 @@ import javax.swing.JLabel;
 public class LoginDialog extends javax.swing.JDialog {
     private String uid;
     private String userType;
+    private String email;
+    private String password;
+    private ArrayList<Member> memberList = readTextFile("member");
+    private ArrayList<User> adminList = readTextFile("admin");
 
     /**
      * Creates new form LoginDialog
@@ -227,17 +233,17 @@ public class LoginDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_registerLabelMouseExited
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String email = emailInput.getText();
-        String password = pwInput.getText();
+        this.email = emailInput.getText();
+        this.password = pwInput.getText();
         login(email, password);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void login(String userEmail, String userPW){
-        ArrayList<Member> memberList = readTextFile("member");
-        ArrayList<User> adminList = readTextFile("admin");
+        
         boolean loginSuccess = false;
         
-        for(Member m : memberList){
+        //check if user is admin or member
+        for(Member m : this.memberList){
             if(userEmail.equals(m.getEmail()) && userPW.equals(m.getPw())){
                 this.uid = m.getUid(); 
                 this.userType = "member";
@@ -245,7 +251,7 @@ public class LoginDialog extends javax.swing.JDialog {
             }
         }
         
-        for(User u : adminList){
+        for(User u : this.adminList){
             if(userEmail.equals(u.getEmail()) && userPW.equals(u.getPw())){
                 this.uid = u.getUid();
                 this.userType = u.getuserType();
@@ -253,20 +259,45 @@ public class LoginDialog extends javax.swing.JDialog {
             }
         } 
         
-        
+        //record login details and redirect users to respective pages
         if(!loginSuccess){
             messageBox("Login details does not match! Please try again!");
+            logging(loginSuccess);
         }else{
             if(this.userType.equals("member")){
+                logging(loginSuccess);
                 CustomerAddBooking.customerAddBooking(this.uid);
                 this.dispose();
             }else{
+                logging(loginSuccess);
                 AdminViewBookingDetails.adminViewBooking(this.uid, this.userType);
                 this.dispose();
             }
-            
-            
+  
         }
+    }
+    
+    private void logging(Boolean loginstate){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String loginStat;
+        String loginInfo = null;
+        if(loginstate){
+            loginInfo = this.uid + "|" + this.email + "|success|" + now.format(formatter); 
+            
+        }else{
+            loginInfo = this.uid + "|" + this.email + "|failed|" + now.format(formatter); 
+        }
+        
+        try {
+                PrintWriter loginDetails = new PrintWriter(new FileWriter("login_log.txt", true));
+                loginDetails.write(loginInfo + System.lineSeparator());
+                loginDetails.close();         
+            }
+            catch (IOException e){
+                messageBox("Error occured! Please try again.");
+            }
+        
     }
 
 

@@ -1,0 +1,16 @@
+null|alice01@staff.com|failed|2022/12/05 14:58:20
+AID001|alice01@staff.com|success|2022/12/05 14:58:23
+UID003|richie06@gmail.com|success|2022/12/05 15:11:25
+UID003|richie06@gmail.com|success|2022/12/05 15:13:39
+UID003|richie06@gmail.com|success|2022/12/05 15:15:51
+null|alice01@staff.com|failed|2022/12/05 16:05:55
+null|alice01@staff.com|failed|2022/12/05 16:06:12
+null|alice01@staff.com|failed|2022/12/05 16:06:24
+AID001|alice01@staff.com|success|2022/12/05 16:07:31
+AID001|alice01@staff.com|success|2022/12/05 16:10:18
+AID001|alice@staff.com|success|2022/12/05 17:45:30
+UID035|ronaldo@gmail.com|success|2022/12/05 22:42:30
+AID001|alice@staff.com|success|2022/12/06 00:01:25
+AID001|alice@staff.com|success|2022/12/06 03:16:25
+null|alice01@staff.com|failed|2022/12/06 03:18:12
+AID001|alice@staff.com|success|2022/12/06 03:18:15

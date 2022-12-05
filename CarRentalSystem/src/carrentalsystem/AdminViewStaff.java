@@ -5,14 +5,23 @@
 package carrentalsystem;
 
 import static carrentalsystem.Functions.*;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +34,8 @@ public class AdminViewStaff extends javax.swing.JFrame {
     /**
      * Creates new form AdminViewStaff
      */
+    
+    //display all staffs
     public AdminViewStaff(String aid, String userType) {
         initComponents();
         this.aid = aid;
@@ -119,6 +130,7 @@ public class AdminViewStaff extends javax.swing.JFrame {
         removeButton = new javax.swing.JButton();
         addStaffButton = new javax.swing.JButton();
         staffLevelInput = new javax.swing.JComboBox<>();
+        generateReportButton = new javax.swing.JButton();
         MenuBar = new javax.swing.JMenuBar();
         viewBookingMenu = new javax.swing.JMenu();
         viewCarMenu = new javax.swing.JMenu();
@@ -204,6 +216,13 @@ public class AdminViewStaff extends javax.swing.JFrame {
 
         staffLevelInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manager", "Staff" }));
 
+        generateReportButton.setText("Generate Report");
+        generateReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateReportButtonActionPerformed(evt);
+            }
+        });
+
         viewBookingMenu.setText("View Bookings");
         viewBookingMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -238,8 +257,11 @@ public class AdminViewStaff extends javax.swing.JFrame {
                 .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(generateReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 959, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(79, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -313,7 +335,9 @@ public class AdminViewStaff extends javax.swing.JFrame {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(generateReportButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,6 +408,7 @@ public class AdminViewStaff extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_staffTableMouseClicked
 
+    //remove staff
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         ArrayList<User> adminLists = readTextFile("admin");
         ArrayList<User> updatedAdminList = new ArrayList<>();
@@ -412,7 +437,8 @@ public class AdminViewStaff extends javax.swing.JFrame {
             messageBox("Please select staff!");
         }
     }//GEN-LAST:event_removeButtonActionPerformed
-
+    
+    //add new staff
     private void addStaffButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStaffButtonActionPerformed
         ArrayList<User> staffLists = readTextFile("admin");
         ArrayList<User> newAdminList = null;
@@ -479,6 +505,70 @@ public class AdminViewStaff extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_viewBookingMenuMouseClicked
 
+    //generate staff report
+    private void generateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportButtonActionPerformed
+        String filePath = null;
+        LocalDateTime now = LocalDateTime.now();
+        String timeNow = String.valueOf(now.getYear())+"_" + String.valueOf(now.getMonthValue()) + "_" + String.valueOf(now.getDayOfMonth());
+        String tableData = "";
+        
+        try{
+            tableData =  staffTable.getModel().getValueAt(0, 0).toString();
+        
+            if(staffTable.getRowCount()>0 && !tableData.equals("No records.")){
+                String fileName = JOptionPane.showInputDialog("Enter File Name:");
+                if(fileName != null){
+                    JFileChooser chooseFile = new JFileChooser();
+                    chooseFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    int i = chooseFile.showSaveDialog(this);
+                    if(i==JFileChooser.APPROVE_OPTION){
+                        filePath = chooseFile.getSelectedFile().getPath();
+                        filePath = filePath + "\\staff_report_" + fileName + "_" + timeNow + ".pdf";
+
+                        try {
+                            PdfWriter writer = new PdfWriter(filePath);
+                             PdfDocument pdf = new PdfDocument(writer);
+                             pdf.addNewPage();
+                             Document doc = new Document(pdf);
+
+                             String header = "Staff Details";
+                             doc.add(new Paragraph(header));
+
+
+                             float columnWidth[] = {200, 200, 200, 200};
+                             Table table = new Table(columnWidth);
+                             table.addCell(new Cell().add(new Paragraph("Staff ID")));
+                             table.addCell(new Cell().add(new Paragraph("Name")));
+                             table.addCell(new Cell().add(new Paragraph("Email")));
+                             table.addCell(new Cell().add(new Paragraph("Staff Level")));
+                             for(int row = 0; row < staffTable.getRowCount(); row++){
+                                 for(int column = 0; column < staffTable.getColumnCount(); column++){
+                                    String value = staffTable.getModel().getValueAt(row, column).toString();
+                                    table.addCell(new Cell().add(new Paragraph(value)));
+                                 }   
+                             }
+
+                             doc.add(table);
+                             doc.close();
+                             messageBox("Report Generated!");
+                        } catch (FileNotFoundException ex) {
+                            messageBox("<HTML>Error occured! Please ensure no duplicate file name and try again!</HTML>");
+                            Logger.getLogger(BusinessReport.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+                else{
+                    messageBox("Please enter file name!");
+                }
+            }else{
+                messageBox("There is no data in table!");
+            }
+        }
+        catch(NullPointerException e){
+            messageBox("There is no data in table!");
+        }
+    }//GEN-LAST:event_generateReportButtonActionPerformed
+
     
     private void DisplayStaffsTable(ArrayList<User> staffList) { 
         try {
@@ -541,12 +631,14 @@ public class AdminViewStaff extends javax.swing.JFrame {
             }
         });
     }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JButton addStaffButton;
     private javax.swing.JTextField emailDisplay;
     private javax.swing.JTextField emailInput;
+    private javax.swing.JButton generateReportButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

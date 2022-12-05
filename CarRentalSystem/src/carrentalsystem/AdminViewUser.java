@@ -7,7 +7,6 @@ import static carrentalsystem.Functions.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -422,7 +421,8 @@ public class AdminViewUser extends javax.swing.JFrame {
         AdminViewUser.adminViewUser(this.aid, this.userType);
         this.dispose();
     }//GEN-LAST:event_viewCustomerMenuMouseClicked
-                                               
+       
+    //filter data based on range and input
     private Member showCustomerInfo(String input, String searchText){
         ArrayList<Member> memberList = readTextFile("member");
 
@@ -467,6 +467,7 @@ public class AdminViewUser extends javax.swing.JFrame {
         return null;
     }
     
+    //display user details
     private void displayUserDetails(Member m){
         ArrayList<MemberPayment> paymentList = readTextFile("payment");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");

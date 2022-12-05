@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JMenu;
@@ -466,7 +467,7 @@ public class CustomerAddBooking extends javax.swing.JFrame {
         String startRent = startRentSearchInput.getText();
         String endRent = endRentSearchInput.getText();
 
-        
+        //check if renting dates are entered
         if((startRent.isBlank() || endRent.isBlank()) || (startRent.equals("yyyy/mm/dd HH:mm")) || endRent.equals("yyyy/mm/dd HH:mm")){
             messageBox("Please enter renting dates!");
         }else{
@@ -474,12 +475,14 @@ public class CustomerAddBooking extends javax.swing.JFrame {
                 LocalDateTime startRentDate = LocalDateTime.parse(startRent, formatter);
                 LocalDateTime endRentDate = LocalDateTime.parse(endRent, formatter);
                 
+                //check if search range is entered
                 if(searchText.isBlank() && !input.equals("All Cars Available")){
                     messageBox("Please enter search range!");
                 }else if(!searchText.isBlank() && input.equals("All Cars Available")){
                     messageBox("All car details are displayed.");
                 }
-
+                
+                //filter results and shoi in table
                 ArrayList<Car> carDetails = showCarInfo(input, searchText);
                 ArrayList<Car> carAvailableList = carAvailable(carDetails, startRentDate, endRentDate);
                 
@@ -493,6 +496,7 @@ public class CustomerAddBooking extends javax.swing.JFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void displayCarInfoTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_displayCarInfoTableMouseClicked
+        //show car details after double click in the table
         if(evt.getClickCount()>=2){
             int row = displayCarInfoTable.getSelectedRow();
             carIDDisplay.setText(displayCarInfoTable.getModel().getValueAt(row, 0).toString());
@@ -517,62 +521,66 @@ public class CustomerAddBooking extends javax.swing.JFrame {
 
     private void addBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookingButtonActionPerformed
         ArrayList<Booking> bookingList = readTextFile("booking");
+        
+        //must login before make booking
         if(this.uid == null){
             messageBox("Please login to make booking!");
             LoginDialog.login();
             this.dispose();
-        }
-        int lastIndex = 0;
-        int newIDNumber = 0;
-        String newID = null;
+        }else{
+            int lastIndex = 0;
+            int newIDNumber = 0;
+            String newID = null;
 
-        Car carID = new Car(carIDDisplay.getText());
-        double totalPrice = Double.parseDouble(totalPriceDisplay.getText());
-        LocalDateTime startRent = LocalDateTime.parse(startRentDateDisplay.getText(), formatter);
-        LocalDateTime endRent = LocalDateTime.parse(endRentDateDisplay.getText(), formatter);
-        String bookingStatus = "Unconfirmed";
-        String paymentStatus = "Unpaid";
-        
-        //get new booking id
-        if(!bookingList.isEmpty()) {
-                lastIndex = bookingList.size() - 1;
-             }
+            Car carID = new Car(carIDDisplay.getText());
+            double totalPrice = Double.parseDouble(totalPriceDisplay.getText());
+            LocalDateTime startRent = LocalDateTime.parse(startRentDateDisplay.getText(), formatter);
+            LocalDateTime endRent = LocalDateTime.parse(endRentDateDisplay.getText(), formatter);
+            String bookingStatus = "Unconfirmed";
+            String paymentStatus = "Unpaid";
 
-             String bid = bookingList.get(lastIndex).getBookingID();
-
-             String[] num = bid.split("BK");
-             for(String i : num) {
-                 if(!i.equals("")) {
-                     newIDNumber = Integer.parseInt(i) + 1;
+            //get new booking id
+            if(!bookingList.isEmpty()) {
+                    lastIndex = bookingList.size() - 1;
                  }
 
-                 if(newIDNumber < 10) {
-                     newID = "00"; 
-                 }
-                 else if(newIDNumber < 100) {
-                     newID = "0";
-                 }
-                 else{
-                     newID = "";
-                 }
-             }
+                 String bid = bookingList.get(lastIndex).getBookingID();
 
-             String newBookingID = "BK" + newID + String.valueOf(newIDNumber);
-            
-        try {
-            addBookings(new Booking(newBookingID, new Member(uid) ,carID, startRent, endRent, bookingStatus, totalPrice, paymentStatus));
-            carIDDisplay.setText("");
-            carBrandDisplay.setText("");
-            carTypeInput.setText("");
-            seatNumDisplay.setText("");
-            carPlateDisplay.setText("");
-            pricePerHourDisplay.setText("");
-            startRentDateDisplay.setText("");
-            endRentDateDisplay.setText("");
-            totalPriceDisplay.setText("");
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerAddBooking.class.getName()).log(Level.SEVERE, null, ex);
-            messageBox("Error occured! Please try again!");
+                 String[] num = bid.split("BK");
+                 for(String i : num) {
+                     if(!i.equals("")) {
+                         newIDNumber = Integer.parseInt(i) + 1;
+                     }
+
+                     if(newIDNumber < 10) {
+                         newID = "00"; 
+                     }
+                     else if(newIDNumber < 100) {
+                         newID = "0";
+                     }
+                     else{
+                         newID = "";
+                     }
+                 }
+
+                 String newBookingID = "BK" + newID + String.valueOf(newIDNumber);
+
+            try {
+                //write new booking to text file
+                addBookings(new Booking(newBookingID, new Member(uid) ,carID, startRent, endRent, bookingStatus, totalPrice, paymentStatus));
+                carIDDisplay.setText("");
+                carBrandDisplay.setText("");
+                carTypeInput.setText("");
+                seatNumDisplay.setText("");
+                carPlateDisplay.setText("");
+                pricePerHourDisplay.setText("");
+                startRentDateDisplay.setText("");
+                endRentDateDisplay.setText("");
+                totalPriceDisplay.setText("");
+            } catch (IOException ex) {
+                Logger.getLogger(CustomerAddBooking.class.getName()).log(Level.SEVERE, null, ex);
+                messageBox("Error occured! Please try again!");
+            }
         }
     }//GEN-LAST:event_addBookingButtonActionPerformed
 
@@ -590,31 +598,57 @@ public class CustomerAddBooking extends javax.swing.JFrame {
     
     
     private void addBookingMouseClicked(java.awt.event.MouseEvent evt){
+        //redirect user page
         CustomerAddBooking.customerAddBooking(this.uid);
         this.dispose();
     }
     
     private ArrayList carAvailable(ArrayList<Car> carFilterList,LocalDateTime startRentDate, LocalDateTime endRentDate){
+        //check car available between date
         ArrayList<Booking> bookingList = readTextFile("booking");
-        ArrayList<Car> carAvailableList = new ArrayList<>();
+        ArrayList<Car> carList = readTextFile("car");
+        ArrayList<Car> carUnavailableList = new ArrayList<>();
+        ArrayList<String> carBooked = new ArrayList<>();
 
         for(Booking b : bookingList){
             //check car unavailable for booking date
-            if(!((startRentDate.isBefore(b.getStartDate()) && endRentDate.isBefore(b.getStartDate())) || !(endRentDate.isAfter(b.getEndDate()) && startRentDate.isAfter(b.getEndDate())))){
-                //add available car with filter search
-                for(Car c : carFilterList){
-                    if(!c.getCarID().equals(b.getCar().getCarID())){
-                        if(!carAvailableList.contains(c)){
-                            carAvailableList.add(c);
-                        }
-                    }
+            if(((startRentDate.isAfter(b.getStartDate()) && endRentDate.isBefore(b.getEndDate())) ||
+                    (endRentDate.isAfter(b.getStartDate()) && startRentDate.isBefore(b.getEndDate()))) && b.getBookingStatus().equals("Confirmed")){
+
+                carBooked.add(b.getCar().getCarID());
+            }
+        }
+        
+        //get car details that are unavailable
+        for(Car car : carList){
+            for(String bc : carBooked){
+                if(car.getCarID().equals(bc)){
+                    carUnavailableList.add(car);
                 }
             }
         }
-        return carAvailableList;
+        
+        Iterator<Car> carIter = carFilterList.iterator();
+        while(carIter.hasNext()){
+            Car nextCar = carIter.next();
+            for(Car c : carUnavailableList){
+                String carID = c.getCarID();
+                if(nextCar.getCarID().equals(carID)){
+                    carIter.remove();
+                }  
+            }  
+        }
+
+        
+        System.out.println("Filter " + carFilterList);
+        System.out.println(carBooked);
+        System.out.println("Avail" + carUnavailableList);
+            
+        return carFilterList;
     }
     
     private ArrayList showCarInfo(String input, String searchText) {
+        //get filtered car list
         ArrayList<Car> carList = readTextFile("car");
         ArrayList<Car> carDetails = new ArrayList<>();
         try {
@@ -664,7 +698,7 @@ public class CustomerAddBooking extends javax.swing.JFrame {
     }
     
     private void DisplayCarDetailsTable(ArrayList<Car> carList) {      
-        
+        //display car available in table
         try {
             DefaultTableModel tableModel = (DefaultTableModel)displayCarInfoTable.getModel();
             tableModel.setRowCount(0);

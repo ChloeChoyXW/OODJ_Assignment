@@ -6,7 +6,6 @@ package carrentalsystem;
 
 import static carrentalsystem.Functions.*;
 import java.awt.Color;
-import java.io.IOException;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class CustomerProfile extends javax.swing.JFrame {
         ArrayList<Member> memberList = readTextFile("member");
         ArrayList<MemberPayment> paymentList = readTextFile("payment");
         DateTimeFormatter yearMonthFormatter = DateTimeFormatter.ofPattern("MM/yy");
-       
+       //set user details once access the page
         for(Member m : memberList){
             if(m.getUid().equals(this.uid)){
                 nameInput.setText(m.getName());
@@ -385,6 +384,7 @@ public class CustomerProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void userDetailsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userDetailsButtonMouseClicked
+        //set user details editable when edit button is clicked
         if(userDetailsButton.getText().equals("Edit")){
             nameInput.setEditable(true);
             emailInput.setEditable(true);
@@ -397,6 +397,7 @@ public class CustomerProfile extends javax.swing.JFrame {
             cancelUpdateUser.setVisible(true);
             userDetailsButton.setText("Update");
         }else{
+            //set user details not editable if button clicked is not edit
             if(updateUserDetails()){
                 nameInput.setEditable(false);
                 emailInput.setEditable(false);
@@ -415,6 +416,7 @@ public class CustomerProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_userDetailsButtonMouseClicked
 
     private void paymentButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentButtonMouseClicked
+        //set payment details editable when edit button is clicked
         if(paymentButton.getText().equals("Edit")){
             cardNoInput.setEditable(true);
             cvvInput.setEditable(true);
@@ -422,6 +424,7 @@ public class CustomerProfile extends javax.swing.JFrame {
             paymentButton.setText("Update");
             cancelUpdatePayment.setVisible(true);
         }else{
+            //set payment details not editable if button clicked is not edit
             if(updateUserPaymentDetails()){
                 cardNoInput.setEditable(false);
                 cvvInput.setEditable(false);
@@ -487,7 +490,8 @@ public class CustomerProfile extends javax.swing.JFrame {
         String phoneNo = phoneInput.getText();
         String icNo = icNoInput.getText();
         String address = addressInput.getText();
-  
+        
+        //ensure all details are filled in
         if(name.isBlank()||email.isBlank()||pw.isBlank()||phoneNo.isBlank()||icNo.isBlank()||address.isBlank()){
             messageBox("Please enter all user details!");
             return false;
@@ -524,7 +528,7 @@ public class CustomerProfile extends javax.swing.JFrame {
         String cardNo = cardNoInput.getText();
         String cvvString = cvvInput.getText();
         String cardExpiry = cardExpiryInput.getText(); 
-
+        //ensure all details are filled in
         if(cardNo.isBlank()||cvvString.isBlank()||cardExpiry.isBlank()){
             messageBox("Please enter all payment details!");
             return false;
@@ -586,6 +590,7 @@ public class CustomerProfile extends javax.swing.JFrame {
     } 
     
     private boolean passwordValidation(String password, String reenteredPw){
+        //validate pw
         String pwPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,}$";
         Pattern pattern = Pattern.compile(pwPattern);
         boolean pwValid = false;

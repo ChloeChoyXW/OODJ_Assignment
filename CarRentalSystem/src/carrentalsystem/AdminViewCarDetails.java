@@ -5,15 +5,23 @@
 package carrentalsystem;
 
 import static carrentalsystem.Functions.*;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
-import javax.swing.JRadioButton;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -121,6 +129,7 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
         pricePerHourInput = new javax.swing.JTextField();
         seatNumberInput = new javax.swing.JTextField();
         carPlateLabel = new javax.swing.JLabel();
+        generateReportButton = new javax.swing.JButton();
         MenuBar = new javax.swing.JMenuBar();
         viewBookingMenu = new javax.swing.JMenu();
         viewCarMenu = new javax.swing.JMenu();
@@ -268,6 +277,14 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        generateReportButton.setText("Generate Report");
+        generateReportButton.setBorderPainted(false);
+        generateReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateReportButtonActionPerformed(evt);
+            }
+        });
+
         viewBookingMenu.setText("View Bookings");
         viewBookingMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -323,9 +340,11 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1036, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(42, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 995, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 995, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generateReportButton, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -337,7 +356,8 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selectedSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchButton))
+                    .addComponent(searchButton)
+                    .addComponent(generateReportButton))
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -354,6 +374,7 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //display result after search button is clicked
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         String input = selectedSearch.getSelectedItem().toString();
         String searchText = searchInput.getText();
@@ -405,6 +426,110 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
         AdminViewUser.adminViewUser(this.aid, this.userType);
         this.dispose();
     }//GEN-LAST:event_viewCustomerMenuMouseClicked
+
+    private void generateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportButtonActionPerformed
+        String filePath = null;
+        LocalDateTime now = LocalDateTime.now();
+        String timeNow = String.valueOf(now.getYear())+"_" + String.valueOf(now.getMonthValue()) + "_" + String.valueOf(now.getDayOfMonth());
+        String filter = selectedSearch.getSelectedItem().toString();
+        String input = searchInput.getText().toUpperCase();
+        String text = null;
+        String tableData = "";
+        
+        //check if table has value
+        try{
+            tableData =  displayCarInfo.getModel().getValueAt(0, 0).toString();
+        
+            if(displayCarInfo.getRowCount()>0 && !tableData.equals("No records.")){
+                //create headings
+                switch(filter){
+
+                            case "Car ID":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Brand":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Car Type":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Number of Seat":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Car Plate":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Car Available":
+                                 text = filter + ": " +input;
+                                 break;
+
+                            case "Car Unavailable":
+                                 text = filter;
+                                 break;
+                         }
+                
+                //user enter file name and choose destination folder
+                String fileName = JOptionPane.showInputDialog("Enter File Name:");
+                if(fileName != null){
+                    JFileChooser chooseFile = new JFileChooser();
+                    chooseFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    int i = chooseFile.showSaveDialog(this);
+                    if(i==JFileChooser.APPROVE_OPTION){
+                        filePath = chooseFile.getSelectedFile().getPath();
+                        filePath = filePath + "\\car_report_" + fileName + "_" + timeNow + ".pdf";
+
+                        try {
+                            PdfWriter writer = new PdfWriter(filePath);
+                             PdfDocument pdf = new PdfDocument(writer);
+                             pdf.addNewPage();
+                             Document doc = new Document(pdf);
+
+                             String header = "Car Details\n" + text;
+                             doc.add(new Paragraph(header));
+
+
+                             float columnWidth[] = {100, 100, 100, 100, 100, 100, 100};
+                             Table table = new Table(columnWidth);
+                             table.addCell(new Cell().add(new Paragraph("Car ID")));
+                             table.addCell(new Cell().add(new Paragraph("Brand")));
+                             table.addCell(new Cell().add(new Paragraph("Car Type")));
+                             table.addCell(new Cell().add(new Paragraph("Seat Number")));
+                             table.addCell(new Cell().add(new Paragraph("Car Plate")));
+                             table.addCell(new Cell().add(new Paragraph("Price")));
+                             table.addCell(new Cell().add(new Paragraph("Availability")));
+
+                             for(int row = 0; row < displayCarInfo.getRowCount(); row++){
+                                 for(int column = 0; column < displayCarInfo.getColumnCount(); column++){
+                                    String value = displayCarInfo.getModel().getValueAt(row, column).toString();
+                                    table.addCell(new Cell().add(new Paragraph(value)));
+                                 }   
+                             }
+
+                             doc.add(table);
+                             doc.close();
+                             messageBox("Report Generated!");
+                        } catch (FileNotFoundException ex) {
+                            messageBox("File not Found! try again!");
+                            Logger.getLogger(BusinessReport.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+                else{
+                    messageBox("Please enter file name!");
+                }
+            }else{
+                messageBox("There is no data in table!");
+            }
+        }
+        catch(NullPointerException e){
+            messageBox("There is no data in table!");
+        }  
+    }//GEN-LAST:event_generateReportButtonActionPerformed
     
     //show car details after clicked from table
     private void setCarDetails(int row){
@@ -686,6 +811,7 @@ public class AdminViewCarDetails extends javax.swing.JFrame {
     private javax.swing.JLabel carTypeLabel;
     private javax.swing.JTable displayCarInfo;
     private javax.swing.JLabel editAddCarLabel;
+    private javax.swing.JButton generateReportButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

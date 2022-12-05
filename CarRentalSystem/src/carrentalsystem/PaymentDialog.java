@@ -28,7 +28,7 @@ public class PaymentDialog extends javax.swing.JDialog {
         initComponents();
         this.bookingID = bookingID;
         this.uid = uid;
-        
+        //show payment details
         ArrayList<MemberPayment> memberList = readTextFile("payment");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
         
@@ -170,10 +170,10 @@ public class PaymentDialog extends javax.swing.JDialog {
                 updateList.add(b);
             }
         }
-        
+        //update payment status
         try {
-//            updateBookingDetails(updateList);
-            System.out.println(updateList);
+            updateBookingDetails(updateList);
+            this.dispose();
         } catch (Exception ex) {
             messageBox("<HTML>Unable to make payment!Please try again later.</HTML>");
             Logger.getLogger(PaymentDialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -215,13 +215,6 @@ public class PaymentDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 PaymentDialog dialog = new PaymentDialog(new javax.swing.JFrame(), true, bookingID, uid);
-                
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
                 dialog.setVisible(true);
             }
         });

@@ -9,10 +9,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JRadioButton;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -301,6 +299,11 @@ public class CustomerViewBooking extends javax.swing.JFrame {
 
         makePaymentButton.setText("Make Payment");
         makePaymentButton.setVisible(false);
+        makePaymentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                makePaymentButtonActionPerformed(evt);
+            }
+        });
 
         profileMenu.setText("Profile");
         profileMenu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -471,7 +474,7 @@ public class CustomerViewBooking extends javax.swing.JFrame {
     }//GEN-LAST:event_addBookingMenuMouseClicked
 
     private void profileMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMenuMouseClicked
-        CustomerProfile.customerProfile(uid);
+        CustomerProfile.customerProfile(this.uid);
         this.dispose();
     }//GEN-LAST:event_profileMenuMouseClicked
 
@@ -479,6 +482,10 @@ public class CustomerViewBooking extends javax.swing.JFrame {
         CustomerAddBooking.main(null);
         this.dispose();
     }//GEN-LAST:event_logoutMenuMouseClicked
+
+    private void makePaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makePaymentButtonActionPerformed
+        PaymentDialog.paymentMessage(bookingIDDisplay.getText(), this.uid);
+    }//GEN-LAST:event_makePaymentButtonActionPerformed
     
     //show booking details after clicked from table
     private void setBookingDetails(int row){
@@ -517,6 +524,8 @@ public class CustomerViewBooking extends javax.swing.JFrame {
             }
         }
     }
+    
+    //filter with input
     private ArrayList showBookingInfo(String input, String searchText){
         ArrayList<Booking> bookingList = readTextFile("booking");
         ArrayList<Member> memberList = readTextFile("member");
