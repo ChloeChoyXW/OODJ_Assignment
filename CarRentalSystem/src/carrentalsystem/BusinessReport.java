@@ -44,6 +44,7 @@ public class BusinessReport extends javax.swing.JFrame {
     private String userType;
     private String reportMonth;
     private String reportYear;
+    private double totalRev = 0;
 
     /**
      * Creates new form BusinessReport
@@ -320,7 +321,9 @@ public class BusinessReport extends javax.swing.JFrame {
                  pdf.addNewPage();
                  Document doc = new Document(pdf);
                  String header = "Business Report (" + reportMonthYearLabel.getText() + ")";
+                 String Revenue = "Total Revenue of the month: RM" + this.totalRev;
                  doc.add(new Paragraph(header));
+                 doc.add(new Paragraph(Revenue));
 
 
                  float columnWidth[] = {10f, 20f, 20f, 10f,20f, 10f, 10f, 10f, 10f};
@@ -376,9 +379,8 @@ public class BusinessReport extends javax.swing.JFrame {
         LinkedHashMap<String, Integer> orderedCarRentCount = new LinkedHashMap<>();
         LinkedHashMap<String, Long> totalHourRent = new LinkedHashMap<>();
         LinkedHashMap<String, Double> totalCarRevenue = new LinkedHashMap<>();
-        double sum=0;
+        double totalRevenue=0;
         long totalHour = 0;
-        double totalRevenue = 0;
             
             
 //          Sum up all revenue of the month
@@ -389,10 +391,9 @@ public class BusinessReport extends javax.swing.JFrame {
             }
 
             for(Double d : revenueofMonth){
-                sum+=d;
+                this.totalRev+=d;
             }  
-            monthRevenueDisplay.setText("Total revenue of the month: " +sum);
-            
+            monthRevenueDisplay.setText("Total revenue of the month: RM" + this.totalRev);
             //add all car id of car rented in carRentedID list
             for(Booking b : bookingList){
                 if((b.getStartDate().getMonth().equals(lastMonthReport.getMonth())) && (b.getStartDate().getYear()==lastMonthReport.getYear()) && b.getPaymentStatus().equalsIgnoreCase("Paid")){

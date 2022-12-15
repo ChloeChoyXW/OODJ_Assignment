@@ -449,45 +449,50 @@ public class AdminViewStaff extends javax.swing.JFrame {
         String email = emailInput.getText();
         String pw = pwInput.getText();
         String staffLevel = staffLevelInput.getSelectedItem().toString();
-        System.out.println(staffLevel);
         
-        //get new booking id
-        if(!staffLists.isEmpty()) {
-                lastIndex = staffLists.size() - 1;
-             }
+        if(!staffName.isBlank() && !email.isBlank() && !pw.isBlank() && !staffLevel.isBlank()){
+            //get new booking id
+            if(!staffLists.isEmpty()) {
+                    lastIndex = staffLists.size() - 1;
+                 }
 
-        String admin = staffLists.get(lastIndex).getUid();
+            String admin = staffLists.get(lastIndex).getUid();
 
-        String[] num = admin.split("AID");
-        for(String i : num) {
-            if(!i.equals("")) {
-                newIDNumber = Integer.parseInt(i) + 1;
-            }
+            String[] num = admin.split("AID");
+            for(String i : num) {
+                if(!i.equals("")) {
+                    newIDNumber = Integer.parseInt(i) + 1;
+                }
 
-            if(newIDNumber < 10) {
-                newID = "00"; 
+                if(newIDNumber < 10) {
+                    newID = "00"; 
+                }
+                else if(newIDNumber < 100) {
+                    newID = "0";
+                }
+                else{
+                    newID = "";
+                }
             }
-            else if(newIDNumber < 100) {
-                newID = "0";
-            }
-            else{
-                newID = "";
-            }
+            String newAdminID = "AID" + newID + String.valueOf(newIDNumber);
+
+           User newStaff = new User(newAdminID, staffName, pw, email, staffLevel);
+
+           try {
+                addAdmin(newStaff);
+                newAdminList = readTextFile("admin");
+                DisplayStaffsTable(newAdminList);
+                nameInput.setText("");
+                emailInput.setText("");
+                pwInput.setText("");
+           } catch (IOException ex) {
+               Logger.getLogger(AdminViewStaff.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        }else{
+            messageBox("Please enter all details!");
         }
-        String newAdminID = "AID" + newID + String.valueOf(newIDNumber);
-
-       User newStaff = new User(newAdminID, staffName, pw, email, staffLevel);
-       
-       try {
-            addAdmin(newStaff);
-            newAdminList = readTextFile("admin");
-            DisplayStaffsTable(newAdminList);
-            nameInput.setText("");
-            emailInput.setText("");
-            pwInput.setText("");
-       } catch (IOException ex) {
-           Logger.getLogger(AdminViewStaff.class.getName()).log(Level.SEVERE, null, ex);
-       }
+        
+        
     }//GEN-LAST:event_addStaffButtonActionPerformed
 
     private void viewCustomerMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewCustomerMenuMouseClicked

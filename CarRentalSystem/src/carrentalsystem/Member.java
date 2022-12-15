@@ -30,8 +30,6 @@ public class Member extends User{
         super(uid);
     }
     
-    
-
     public void setIcNo(String icNo) {
         this.icNo = icNo;
     }
