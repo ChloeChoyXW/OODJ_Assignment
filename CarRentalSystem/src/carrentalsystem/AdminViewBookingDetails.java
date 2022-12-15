@@ -606,7 +606,7 @@ public class AdminViewBookingDetails extends javax.swing.JFrame {
         String searchText = searchInput.getText();
         ArrayList<Booking> bookingDetails = showBookingInfo(input, searchText);
         DisplayBookingsTable(bookingDetails); 
-        if(input.equalsIgnoreCase("Unconfirmed")){
+        if(input.equalsIgnoreCase("Unconfirmed Booking")){
             confirmBookingButton.setVisible(true);
             declineBookingButton.setVisible(true);
             deleteBookingButton.setVisible(false);
